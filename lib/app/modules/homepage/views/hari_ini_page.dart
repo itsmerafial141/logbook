@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:loogbook_mobile_app/app/modules/values/colors.dart';
+import 'package:loogbook_mobile_app/app/modules/values/constraint.dart';
 import 'package:loogbook_mobile_app/app/utils/helper.dart';
+
+import 'aktivitas_body.dart';
+import 'list_aktivitas.dart';
 
 class HariIniPage extends StatelessWidget {
   const HariIniPage({
@@ -16,7 +20,7 @@ class HariIniPage extends StatelessWidget {
         MediaQuery.of(context).padding.top;
     return SingleChildScrollView(
       child: Container(
-        padding: EdgeInsets.all(25.0),
+        padding: MyConstraint.paddingBody,
         child: Center(
           child: Column(
             // mainAxisAlignment: MainAxisAlignment.s,
@@ -25,42 +29,14 @@ class HariIniPage extends StatelessWidget {
               SizedBox(
                 height: 20.0,
               ),
-              _bodyAktivitas(deviceWidth),
+              AktivitasBody(deviceWidth: deviceWidth),
               SizedBox(
                 height: 20,
               ),
-              _listAktivitas(deviceWidth)
+              ListAktivitas(deviceWidth: deviceWidth),
             ],
           ),
         ),
-      ),
-    );
-  }
-
-  Container _listAktivitas(double deviceWidth) {
-    return Container(
-      width: deviceWidth,
-      child: Image(image: AssetImage("assets/images/empety_list.png")),
-    );
-  }
-
-  Container _bodyAktivitas(double deviceWidth) {
-    return Container(
-      // color: Colors.amber,
-      width: deviceWidth,
-      child: Row(
-        children: [
-          Text("Aktivitas",
-              style: TextStyle(color: MyColors.textPrimary, fontSize: 18)),
-          SizedBox(
-            width: 8.0,
-          ),
-          Text("0",
-              style: TextStyle(
-                  color: MyColors.amber,
-                  fontWeight: FontWeight.w500,
-                  fontSize: 18)),
-        ],
       ),
     );
   }
