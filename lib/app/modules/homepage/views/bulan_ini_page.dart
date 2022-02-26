@@ -1,23 +1,83 @@
 import 'package:flutter/material.dart';
-import 'package:loogbook_mobile_app/app/modules/values/constraint.dart';
+import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
-class BulanIniPage extends StatelessWidget {
+import '../../../utils/helper.dart';
+import '../../values/colors.dart';
+import '../../values/constraint.dart';
+import '../controllers/homepage_controller.dart';
+import 'aktivitas_body.dart';
+import 'list_aktivitas.dart';
+
+class BulanIniPage extends GetView<HomepageController> {
   const BulanIniPage({
     Key? key,
   }) : super(key: key);
 
-  
-  
   @override
   Widget build(BuildContext context) {
+    final deviceWidth = MediaQuery.of(context).size.width;
+    String formattedDate =
+        DateFormat('MMMM dd').format(controller.selectedDate);
+
     return SingleChildScrollView(
       child: Container(
+        color: MyColors.backgroundColor,
         padding: MyConstraint.paddingBody,
-        color: Colors.red,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            
+            Stack(
+              children: [
+                CalendarDatePicker(
+                    initialDate: controller.selectedDate,
+                    firstDate: controller.firstDate,
+                    lastDate: controller.lastDate,
+                    onDateChanged: (asdasd) {}),
+                Positioned(
+                    child: Container(
+                  color: MyColors.backgroundColor,
+                  width: MyHelper.myAppBar.preferredSize.width,
+                  height: 52.0,
+                  child: MaterialButton(
+                    onPressed: () {
+                      controller.isCalenderDropdown.value =
+                          !controller.isCalenderDropdown.value;
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(formattedDate),
+                        controller.isCalenderDropdown.value
+                            ? Icon(Icons.arrow_drop_up)
+                            : Icon(Icons.arrow_drop_down),
+                      ],
+                    ),
+                  ),
+                )),
+                Container(
+                  child: Obx(() {
+                    return Container(
+                      margin: controller.isCalenderDropdown.value
+                          ? EdgeInsets.only(
+                              top: 136,
+                            )
+                          : EdgeInsets.only(
+                              top: 310,
+                            ),
+                      padding: EdgeInsets.only(top: 20),
+                      color: MyColors.backgroundColor,
+                      child: Column(
+                        children: [
+                          AktivitasBody(deviceWidth: deviceWidth),
+                          ListAktivitas(deviceWidth: deviceWidth)
+                        ],
+                      ),
+                    );
+                  }),
+                )
+              ],
+            ),
           ],
         ),
       ),
