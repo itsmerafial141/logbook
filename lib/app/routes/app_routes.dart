@@ -6,8 +6,10 @@ part of 'app_pages.dart';
 abstract class Routes {
   Routes._();
   static const HOMEPAGE = _Paths.HOMEPAGE;
+  static const DETAIL_AKTIVITAS = _Paths.DETAIL_AKTIVITAS;
 }
 
 abstract class _Paths {
   static const HOMEPAGE = '/homepage';
+  static const DETAIL_AKTIVITAS = '/detail-aktivitas';
 }
