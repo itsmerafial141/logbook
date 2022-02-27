@@ -13,6 +13,8 @@ dependencies:
   google_fonts: ^2.3.1
   table_calendar: ^3.0.4
   intl: ^0.17.0
+  provider: ^6.0.2
+  change_notifier: ^0.24.0
 
 dev_dependencies:
   flutter_lints: ^1.0.0

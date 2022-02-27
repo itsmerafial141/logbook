@@ -63,7 +63,9 @@ class BulanIniPage extends GetView<HomepageController> {
                 ),
                 Container(
                   child: Obx(() {
-                    return Container(
+                    return AnimatedContainer(
+                      duration: Duration(milliseconds: 500),
+                      curve: Curves.easeInOutQuint,
                       margin: controller.isCalenderDropdown.value
                           ? EdgeInsets.only(
                               top: 136,

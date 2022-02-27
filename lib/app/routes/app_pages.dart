@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 
 import '../modules/detail_aktivitas/bindings/detail_aktivitas_binding.dart';
 import '../modules/detail_aktivitas/views/detail_aktivitas_view.dart';
@@ -21,12 +22,13 @@ class AppPages {
   static final routes = [
     GetPage(
       name: _Paths.HOMEPAGE,
-      page: () => HomepageView(),
+      page: () => (HomepageView()),
       binding: HomepageBinding(),
     ),
     GetPage(
       name: _Paths.DETAIL_AKTIVITAS,
-      page: () => DetailAktivitasView(),
+      page: () => ChangeNotifierProvider(create: (_) {  },
+      child: DetailAktivitasView()),
       binding: DetailAktivitasBinding(),
     ),
     GetPage(

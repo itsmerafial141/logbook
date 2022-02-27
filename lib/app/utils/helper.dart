@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -5,6 +7,7 @@ import '../modules/values/colors.dart';
 
 class MyHelper {
   static final myAppBar = AppBar(
+    backgroundColor: MyColors.primaryColor,
     title: Text('Aktivitasku'),
     centerTitle: true,
     actions: [

@@ -26,6 +26,7 @@ class HomepageView extends GetView<HomepageController> {
         ),
         drawer: MyDrawer(),
         bottomNavigationBar: CustomButton(
+          useLeading: true,
           color: MyColors.primaryColor,
           icon: Icons.add,
           sizeIcon: 15.0,

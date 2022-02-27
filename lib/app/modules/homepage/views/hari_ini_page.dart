@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import, unused_local_variable
+
 import 'package:flutter/material.dart';
 import 'package:loogbook_mobile_app/app/modules/values/colors.dart';
 import 'package:loogbook_mobile_app/app/modules/values/constraint.dart';

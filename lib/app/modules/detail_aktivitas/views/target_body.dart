@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:loogbook_mobile_app/app/modules/detail_aktivitas/controllers/detail_aktivitas_controller.dart';
 
 import '../../values/colors.dart';
 
-class TargetBody extends StatelessWidget {
+class TargetBody extends GetView<DetailAktivitasController> {
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -14,9 +16,14 @@ class TargetBody extends StatelessWidget {
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(5),
               color: MyColors.checkColor),
-          child: Checkbox(
-            onChanged: (_) {},
-            value: true,
+          child: Obx(
+            () => Checkbox(
+              onChanged: (_) {
+                controller.changeTargetToggle();
+              },
+              side: BorderSide(style: BorderStyle.none),
+              value: controller.onTarget.value,
+            ),
           ),
         ),
         SizedBox(
