@@ -15,9 +15,6 @@ class HariIniPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final deviceWidth = MediaQuery.of(context).size.width;
     final deviceHeight = MediaQuery.of(context).size.height;
-    final bodyHeight = deviceHeight -
-        MyHelper.myAppBar.preferredSize.height -
-        MediaQuery.of(context).padding.top;
     return SingleChildScrollView(
       child: Container(
         padding: MyConstraint.paddingBody,

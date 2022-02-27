@@ -10,16 +10,9 @@ import 'aktivitas_body.dart';
 import 'list_aktivitas.dart';
 
 class BulanIniPage extends GetView<HomepageController> {
-  const BulanIniPage({
-    Key? key,
-  }) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     final deviceWidth = MediaQuery.of(context).size.width;
-    String formattedDate =
-        DateFormat('MMMM dd').format(controller.selectedDate);
-
     return SingleChildScrollView(
       child: Container(
         color: MyColors.backgroundColor,
@@ -33,28 +26,41 @@ class BulanIniPage extends GetView<HomepageController> {
                     initialDate: controller.selectedDate,
                     firstDate: controller.firstDate,
                     lastDate: controller.lastDate,
-                    onDateChanged: (asdasd) {}),
-                Positioned(
-                    child: Container(
-                  color: MyColors.backgroundColor,
-                  width: MyHelper.myAppBar.preferredSize.width,
-                  height: 52.0,
-                  child: MaterialButton(
-                    onPressed: () {
-                      controller.isCalenderDropdown.value =
-                          !controller.isCalenderDropdown.value;
+                    onDisplayedMonthChanged: (month) {
+                      controller.changeDateView();
+                      controller.formattedDate =
+                          DateFormat('MMMM dd').format(month);
                     },
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(formattedDate),
-                        controller.isCalenderDropdown.value
-                            ? Icon(Icons.arrow_drop_up)
-                            : Icon(Icons.arrow_drop_down),
-                      ],
-                    ),
-                  ),
-                )),
+                    onDateChanged: (date) {
+                      controller.changeDateView();
+                      controller.formattedDate =
+                          DateFormat('MMMM dd').format(date);
+                    }),
+                Positioned(
+                  child: Container(
+                      color: MyColors.backgroundColor,
+                      width: MyHelper.myAppBar.preferredSize.width,
+                      height: 52.0,
+                      child: MaterialButton(
+                        onPressed: () {
+                          controller.isCalenderDropdown.value =
+                              !controller.isCalenderDropdown.value;
+                        },
+                        child: Obx(() {
+                          return Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              controller.stateViewDate.value
+                                  ? Text(controller.formattedDate)
+                                  : Text(controller.formattedDate),
+                              controller.isCalenderDropdown.value
+                                  ? Icon(Icons.arrow_drop_up)
+                                  : Icon(Icons.arrow_drop_down)
+                            ],
+                          );
+                        }),
+                      )),
+                ),
                 Container(
                   child: Obx(() {
                     return Container(

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import '../modules/values/colors.dart';
 
 class MyHelper {
   static final myAppBar = AppBar(
     title: Text('Aktivitasku'),
     centerTitle: true,
-    leading: Icon(Icons.menu),
     actions: [
       Padding(
         padding: EdgeInsets.symmetric(horizontal: 10.0),
@@ -24,5 +26,21 @@ class MyHelper {
         ),
       ],
     ),
+  );
+
+  static final myDetailAppBar = AppBar(
+    title: Text(
+      'Detail Aktivitas',
+      style: TextStyle(
+          color: MyColors.textPrimary,
+          fontSize: 20,
+          fontWeight: FontWeight.w500),
+    ),
+    iconTheme: IconThemeData(
+      color: MyColors.textPrimary, //change your color here
+    ),
+    centerTitle: false,
+    backgroundColor: Colors.transparent,
+    elevation: 0,
   );
 }

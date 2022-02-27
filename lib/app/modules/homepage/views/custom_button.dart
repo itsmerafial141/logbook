@@ -11,6 +11,8 @@ class CustomButton extends StatelessWidget {
     this.textColor,
     this.iconColor,
     this.sizeIcon,
+    required this.borderRadius,
+    required this.onPressed,
   }) : super(key: key);
   final text;
   final textColor;
@@ -18,14 +20,17 @@ class CustomButton extends StatelessWidget {
   final icon;
   final iconColor;
   final sizeIcon;
+  final double borderRadius;
+  final void Function() onPressed;
   @override
   Widget build(BuildContext context) {
     return Container(
       height: MyHelper.myAppBar.preferredSize.height * 0.5,
       margin: EdgeInsets.all(10.0),
-      color: color!,
+      decoration: BoxDecoration(
+          color: color!, borderRadius: BorderRadius.circular(borderRadius)),
       child: MaterialButton(
-        onPressed: () {},
+        onPressed: onPressed,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

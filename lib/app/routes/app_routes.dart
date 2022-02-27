@@ -7,9 +7,11 @@ abstract class Routes {
   Routes._();
   static const HOMEPAGE = _Paths.HOMEPAGE;
   static const DETAIL_AKTIVITAS = _Paths.DETAIL_AKTIVITAS;
+  static const KATEGORI = _Paths.KATEGORI;
 }
 
 abstract class _Paths {
   static const HOMEPAGE = '/homepage';
   static const DETAIL_AKTIVITAS = '/detail-aktivitas';
+  static const KATEGORI = '/kategori';
 }
