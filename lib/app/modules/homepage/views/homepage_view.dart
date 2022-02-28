@@ -6,10 +6,10 @@ import 'package:loogbook_mobile_app/app/routes/app_pages.dart';
 
 import '../controllers/homepage_controller.dart';
 import '../../../utils/helper.dart';
-import 'bulan_ini_page.dart';
-import 'custom_button.dart';
-import 'hari_ini_page.dart';
-import 'main_drawer.dart';
+import '../screen/bulan_ini_screen.dart';
+import '../widget/custom_button_widget.dart';
+import '../screen/hari_ini_screen.dart';
+import '../../../utils/main_drawer.dart';
 
 class HomepageView extends GetView<HomepageController> {
   @override

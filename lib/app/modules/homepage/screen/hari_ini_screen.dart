@@ -5,8 +5,8 @@ import 'package:loogbook_mobile_app/app/modules/values/colors.dart';
 import 'package:loogbook_mobile_app/app/modules/values/constraint.dart';
 import 'package:loogbook_mobile_app/app/utils/helper.dart';
 
-import 'aktivitas_body.dart';
-import 'list_aktivitas.dart';
+import '../widget/tittle_aktivitas_widget.dart';
+import '../views/list_aktivitas.dart';
 
 class HariIniPage extends StatelessWidget {
   const HariIniPage({
@@ -19,6 +19,7 @@ class HariIniPage extends StatelessWidget {
     final deviceHeight = MediaQuery.of(context).size.height;
     return SingleChildScrollView(
       child: Container(
+        color: MyColors.backgroundColor,
         padding: MyConstraint.paddingBody,
         child: Center(
           child: Column(

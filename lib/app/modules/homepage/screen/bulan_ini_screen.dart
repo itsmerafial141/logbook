@@ -6,8 +6,8 @@ import '../../../utils/helper.dart';
 import '../../values/colors.dart';
 import '../../values/constraint.dart';
 import '../controllers/homepage_controller.dart';
-import 'aktivitas_body.dart';
-import 'list_aktivitas.dart';
+import '../widget/tittle_aktivitas_widget.dart';
+import '../views/list_aktivitas.dart';
 
 class BulanIniPage extends GetView<HomepageController> {
   @override
@@ -15,7 +15,6 @@ class BulanIniPage extends GetView<HomepageController> {
     final deviceWidth = MediaQuery.of(context).size.width;
     return SingleChildScrollView(
       child: Container(
-        color: MyColors.backgroundColor,
         padding: MyConstraint.paddingBody,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -78,6 +77,9 @@ class BulanIniPage extends GetView<HomepageController> {
                       child: Column(
                         children: [
                           AktivitasBody(deviceWidth: deviceWidth),
+                          SizedBox(
+                            height: 20,
+                          ),
                           ListAktivitas(deviceWidth: deviceWidth)
                         ],
                       ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:loogbook_mobile_app/app/modules/homepage/views/custom_button.dart';
+import 'package:loogbook_mobile_app/app/modules/homepage/widget/custom_button_widget.dart';
 import 'package:loogbook_mobile_app/app/modules/values/colors.dart';
 import 'package:loogbook_mobile_app/app/utils/helper.dart';
 
