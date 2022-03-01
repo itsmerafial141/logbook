@@ -33,7 +33,7 @@ class HariIniPage extends StatelessWidget {
               SizedBox(
                 height: 20,
               ),
-              ListAktivitas(deviceWidth: deviceWidth),
+              // ListAktivitas(deviceWidth: deviceWidth),
             ],
           ),
         ),

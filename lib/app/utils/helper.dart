@@ -19,16 +19,6 @@ class MyHelper {
         ),
       ),
     ],
-    bottom: TabBar(
-      tabs: [
-        Tab(
-          text: "Minggu ini",
-        ),
-        Tab(
-          text: "Bulan",
-        ),
-      ],
-    ),
   );
 
   static final myDetailAppBar = AppBar(

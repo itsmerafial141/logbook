@@ -21,33 +21,6 @@ class CustomKategoriCheckButton extends GetView<DetailAktivitasController> {
     return Expanded(
         child: Padding(
       padding: const EdgeInsets.symmetric(horizontal: 4),
-      // child: Obx(() {
-      //   return stateValue.value
-      //       ? ElevatedButton(
-      //           onPressed: onPress,
-      //           style: ElevatedButton.styleFrom(
-      //               side: BorderSide(color: MyColors.primaryColor),
-      //               shadowColor: Colors.white,
-      //               primary: MyColors.primaryColor),
-      //           child: Text(
-      //             text!,
-      //             style: TextStyle(
-      //                 fontWeight: FontWeight.bold, color: Colors.white),
-      //           ),
-      //         )
-      //       : ElevatedButton(
-      //           onPressed: onPress,
-      //           style: ElevatedButton.styleFrom(
-      //               side: BorderSide(color: MyColors.primaryColor),
-      //               shadowColor: Colors.white,
-      //               primary: Colors.white),
-      //           child: Text(
-      //             text!,
-      //             style: TextStyle(
-      //                 fontWeight: FontWeight.bold, color: MyColors.textPrimary),
-      //           ),
-      //         );
-      // }),
       child: Obx(
         () => AnimatedContainer(
           child: stateValue.value

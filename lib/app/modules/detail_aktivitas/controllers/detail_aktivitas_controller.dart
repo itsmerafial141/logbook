@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:get/get.dart';
 import 'package:loogbook_mobile_app/app/modules/detail_aktivitas/detail_aktivitas_model.dart';
 import 'package:loogbook_mobile_app/app/modules/detail_aktivitas/providers/aktivitas_provider.dart';
@@ -60,16 +58,17 @@ class DetailAktivitasController extends GetxController with StateMixin {
     listSubAktivitas.add(subAktivitas7);
   }
 
-  void addSubAktivitas() {
-    var subAktivitas = DetailAktivitasModel(status: false, tittle: "oooo");
+  void addSubAktivitas(String tittle) {
+    var subAktivitas = DetailAktivitasModel(status: false, tittle: tittle);
     listSubAktivitas.add(subAktivitas);
   }
 
   void stateSubAktivitas(DetailAktivitasModel data) {
-    listCheckSubAktivitas.toggle();
-    data.status = listCheckSubAktivitas.value;
+    var dataCheck = data.status.obs;
+    dataCheck.toggle();
+    data.status = dataCheck.value;
     print(data.tittle + " = " + data.status.toString());
-    change(listCheckSubAktivitas.value, status: RxStatus.success());
+    change(dataCheck.value, status: RxStatus.success());
   }
 
   void changeTargetToggle() {

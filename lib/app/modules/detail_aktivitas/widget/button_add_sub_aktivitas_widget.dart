@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:loogbook_mobile_app/app/modules/detail_aktivitas/widget/custom_text_field_widget.dart';
-import 'package:loogbook_mobile_app/app/modules/homepage/widget/custom_button_widget.dart';
-
 import '../../values/colors.dart';
 import '../controllers/detail_aktivitas_controller.dart';
 
@@ -15,41 +12,10 @@ class ButtonAddSubAktivitasWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var addSubAktivitasController = TextEditingController();
     return Container(
         width: double.infinity,
         child: MaterialButton(
-          onPressed: () {
-            // controller.addSubAktivitas();
-            showDialog(
-              context: context,
-              builder: (BuildContext context) {
-                return Dialog(
-                  backgroundColor: MyColors.backgroundColor,
-                  insetAnimationCurve: Curves.easeInOut,
-                  insetAnimationDuration: Duration(milliseconds: 1000),
-                  insetPadding: EdgeInsets.all(10),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5),
-                      side: BorderSide.none),
-                  child: Container(
-                      height: MediaQuery.of(context).size.height*0.5,
-                      width: MediaQuery.of(context).size.width,
-                      child: Column(
-                        children: [
-                          CustomTextFieldWidget(),
-                          CustomButton(
-                              color: MyColors.primaryColor,
-                              text: "Tambah Sub-Aktivitas",
-                              textColor: MyColors.textPrimary,
-                              useLeading: false,
-                              borderRadius: 5,
-                              onPressed: () {})
-                        ],
-                      )),
-                );
-              },
-            );
-          },
           child: Row(
             children: [
               Icon(
@@ -63,6 +29,70 @@ class ButtonAddSubAktivitasWidget extends StatelessWidget {
               ),
             ],
           ),
+          onPressed: () {
+            dialogMethod(context, addSubAktivitasController);
+          },
         ));
+  }
+
+  Future<dynamic> dialogMethod(
+      BuildContext context, TextEditingController addSubAktivitasController) {
+    return showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return Dialog(
+          backgroundColor: MyColors.backgroundColor,
+          insetAnimationCurve: Curves.easeInOut,
+          insetAnimationDuration: Duration(milliseconds: 500),
+          insetPadding: EdgeInsets.all(10),
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(5), side: BorderSide.none),
+          child: Wrap(
+            children: [
+              Container(
+                padding: EdgeInsets.all(10),
+                child: Column(
+                  children: [
+                    Container(
+                      child: TextField(
+                        controller: addSubAktivitasController,
+                        decoration: InputDecoration(
+                            filled: true,
+                            focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(5),
+                                borderSide: BorderSide.none),
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(5),
+                                borderSide: BorderSide.none),
+                            fillColor: MyColors.checkColor),
+                        style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            color: MyColors.textPrimary),
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(top: 10),
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                          color: MyColors.primaryColor,
+                          borderRadius: BorderRadius.circular(5)),
+                      child: MaterialButton(
+                        onPressed: () {
+                          controller
+                              .addSubAktivitas(addSubAktivitasController.text);
+                          Navigator.pop(context);
+                        },
+                        child: Text("Tambah Sub-Aktivitas",
+                            style: TextStyle(color: Colors.white)),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
   }
 }

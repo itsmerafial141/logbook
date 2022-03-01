@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../controllers/detail_aktivitas_controller.dart';
-import 'custom_kategori_check_button.dart';
+import 'kategori_check_button_widget.dart';
 
 class ListKategori extends GetView<DetailAktivitasController> {
   @override
