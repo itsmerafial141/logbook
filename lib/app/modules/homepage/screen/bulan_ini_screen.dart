@@ -7,7 +7,7 @@ import '../../values/colors.dart';
 import '../../values/constraint.dart';
 import '../controllers/homepage_controller.dart';
 import '../widget/tittle_aktivitas_widget.dart';
-import '../views/list_aktivitas.dart';
+import '../widget/list_aktivitas_widget.dart';
 
 class BulanIniPage extends GetView<HomepageController> {
   @override
@@ -50,7 +50,13 @@ class BulanIniPage extends GetView<HomepageController> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               controller.stateViewDate.value
-                                  ? Text(controller.formattedDate)
+                                  ? Container(
+                                      child: Row(
+                                      children: [
+                                        Text(controller.date + ", "),
+                                        Text(controller.formattedDate),
+                                      ],
+                                    ))
                                   : Text(controller.formattedDate),
                               controller.isCalenderDropdown.value
                                   ? Icon(Icons.arrow_drop_up)

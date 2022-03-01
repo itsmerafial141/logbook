@@ -31,8 +31,8 @@ class _ListSubAktivitasState extends State<ListSubAktivitasScreen> {
                 child: Text("Kozong"),
               )
             : ListView(
-              shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
                 children: [
                   ...myList.map(buildSingleCheckbox).toList(),
                 ],

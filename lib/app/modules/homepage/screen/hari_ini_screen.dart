@@ -6,7 +6,7 @@ import 'package:loogbook_mobile_app/app/modules/values/constraint.dart';
 import 'package:loogbook_mobile_app/app/utils/helper.dart';
 
 import '../widget/tittle_aktivitas_widget.dart';
-import '../views/list_aktivitas.dart';
+import '../widget/list_aktivitas_widget.dart';
 
 class HariIniPage extends StatelessWidget {
   const HariIniPage({
