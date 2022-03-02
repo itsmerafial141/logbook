@@ -1,23 +1,19 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:get/get.dart';
 import 'package:loogbook_mobile_app/app/modules/detail_aktivitas/detail_aktivitas_model.dart';
-import 'package:loogbook_mobile_app/app/modules/detail_aktivitas/providers/aktivitas_provider.dart';
+import 'package:loogbook_mobile_app/app/modules/homepage/homepage_model.dart';
 
 class DetailAktivitasController extends GetxController with StateMixin {
   var listSubAktivitas = List<DetailAktivitasModel>.empty().obs;
-  RxBool listCheckSubAktivitas = false.obs;
-  final List<AktivitasProvider> _listAktivitas = [];
-  var statusSelected = false.obs;
-  List<AktivitasProvider> get listAktivitas {
-    return _listAktivitas;
-  }
+  var listAktivitas = List<Homepage>.empty().obs;
 
-  final List<String> mySubAktivitas = [
-    "Analisis",
-    "Wireframe",
-    "Hi-fi Design",
-    "Prototyping",
-    "Testing",
-  ];
+  RxBool listCheckSubAktivitas = false.obs;
+  var statusSelected = false.obs;
+
+  Rx<DateTime> initialDate = DateTime.now().obs;
+  Rx<DateTime> firstDate = DateTime(2000).obs;
+  Rx<DateTime> lastDate = DateTime(2030).obs;
 
   RxBool onConcept = false.obs;
   RxBool onDesign = false.obs;
@@ -26,6 +22,9 @@ class DetailAktivitasController extends GetxController with StateMixin {
   RxBool onReport = false.obs;
   RxBool onOther = false.obs;
   RxBool onTarget = false.obs;
+  RxBool dataCheck = false.obs;
+  // RxString onKategoriSelected = "".obs;
+  // RxString onWaktuSelected = "".obs;
 
   List<String> myListSubAktivitas = [
     "Analisis",
@@ -58,13 +57,33 @@ class DetailAktivitasController extends GetxController with StateMixin {
     listSubAktivitas.add(subAktivitas7);
   }
 
+  void stateTanggal(DateTime value) {
+    if (value != null) {
+      initialDate.value = value;
+    }
+  }
+
   void addSubAktivitas(String tittle) {
     var subAktivitas = DetailAktivitasModel(status: false, tittle: tittle);
     listSubAktivitas.add(subAktivitas);
   }
 
+  // void addAktivitas(String target, String realita, String kategori,
+  //     String waktu, String tanggal) {
+  //   var aktivitas = Homepage(
+  //       id: target,
+  //       status: false,
+  //       target: target,
+  //       realita: realita,
+  //       kategori: kategori,
+  //       subaktivitas: "subAktivitas",
+  //       waktu: waktu,
+  //       tanggal: tanggal);
+  //   listAktivitas.add(aktivitas);
+  // }
+
   void stateSubAktivitas(DetailAktivitasModel data) {
-    var dataCheck = data.status.obs;
+    dataCheck = data.status.obs;
     dataCheck.toggle();
     data.status = dataCheck.value;
     print(data.tittle + " = " + data.status.toString());
@@ -78,31 +97,37 @@ class DetailAktivitasController extends GetxController with StateMixin {
 
   void changeConceptState() {
     onConcept.toggle();
+    // onKategoriSelected = "Concept" as RxString;
     print("onConcept : " + onConcept.toString());
   }
 
   void changeDesignState() {
     onDesign.toggle();
+    // onKategoriSelected = "Design" as RxString;
     print("onDesign : " + onDesign.toString());
   }
 
   void changeDiscussState() {
     onDiscuss.toggle();
+    // onKategoriSelected = "Discuss" as RxString;
     print("onDiscuss : " + onDiscuss.toString());
   }
 
   void changeLearntState() {
     onLearn.toggle();
+    // onKategoriSelected = "Learn" as RxString;
     print("onLearn : " + onLearn.toString());
   }
 
   void changeReportState() {
     onReport.toggle();
+    // onKategoriSelected = "Report" as RxString;
     print("onReport : " + onReport.toString());
   }
 
   void changeOtherState() {
     onOther.toggle();
+    // onKategoriSelected = "Other" as RxString;
     print("onOther : " + onOther.toString());
   }
 }

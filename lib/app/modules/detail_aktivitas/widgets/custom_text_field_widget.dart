@@ -1,16 +1,22 @@
-
 import 'package:flutter/material.dart';
+import 'package:loogbook_mobile_app/app/modules/detail_aktivitas/controllers/detail_aktivitas_controller.dart';
 
 import '../../values/colors.dart';
 
 class CustomTextFieldWidget extends StatelessWidget {
   const CustomTextFieldWidget({
     Key? key,
+    // required this.controller,
+    // required this.realita,
   }) : super(key: key);
+
+  // final DetailAktivitasController controller;
+  // final TextEditingController realita;
 
   @override
   Widget build(BuildContext context) {
     return TextField(
+      // controller: realita,
       decoration: InputDecoration(
           filled: true,
           focusedBorder: OutlineInputBorder(
@@ -21,8 +27,8 @@ class CustomTextFieldWidget extends StatelessWidget {
               borderSide: BorderSide.none),
           fillColor: MyColors.checkColor),
       maxLines: 5,
-      style: TextStyle(
-          fontWeight: FontWeight.w600, color: MyColors.textPrimary),
+      style:
+          TextStyle(fontWeight: FontWeight.w600, color: MyColors.textPrimary),
     );
   }
 }

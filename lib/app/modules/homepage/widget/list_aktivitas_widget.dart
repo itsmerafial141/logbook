@@ -150,6 +150,12 @@ class CardListViewWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var tittle = data.target.toString();
+    TextPainter textPainter = TextPainter()
+      ..text = TextSpan(text: tittle)
+      ..textDirection = TextDirection.ltr
+      ..layout(minWidth: 0, maxWidth: double.infinity);
+
     return Container(
       padding: EdgeInsets.all(12),
       decoration: BoxDecoration(
@@ -194,6 +200,51 @@ class CardListViewWidget extends StatelessWidget {
                     fontSize: 15,
                     color: MyColors.textPrimary),
               ),
+              // Stack(
+              //   alignment: Alignment.centerLeft,
+              //   children: [
+              //     controller.obx((state) {
+              //       if (data.status) {
+              //         return Text(
+              //           data.target.toString(),
+              //           style: TextStyle(
+              //               fontWeight: FontWeight.bold,
+              //               fontSize: 15,
+              //               color: MyColors.textDisable),
+              //         );
+              //       } else {
+              //         return Text(
+              //           data.target.toString(),
+              //           style: TextStyle(
+              //               fontWeight: FontWeight.bold,
+              //               fontSize: 15,
+              //               color: MyColors.textPrimary),
+              //         );
+              //       }
+              //     }, onLoading: null),
+              //     controller.obx(
+              //       (state) {
+              //         if (data.status) {
+              //           return Container(
+              //             margin: EdgeInsets.only(top: 4),
+              //             color: MyColors.textDisable,
+              //             width: textPainter.size.width * 1.05,
+              //             height: 1.2,
+              //           );
+              //         } else {
+              //           return Container();
+              //         }
+              //       },
+              //     ),
+              //   ],
+              // ),
+              // Text(
+              //   data.target.toString(),
+              //   style: TextStyle(
+              //       fontWeight: FontWeight.bold,
+              //       fontSize: 15,
+              //       color: MyColors.textPrimary),
+              // ),
             ],
           ),
           SizedBox(

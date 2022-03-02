@@ -16,8 +16,10 @@ class HomepageController extends GetxController with StateMixin {
   final firstDate = DateTime(2010, 1);
   final lastDate = DateTime(2022, 12);
 
+  RxBool statusCheck = false.obs;
+
   void stateAktivitas(Homepage data) {
-    var statusCheck = data.status.obs;
+    statusCheck = data.status.obs;
     statusCheck.toggle();
     data.status = statusCheck.value;
     print(data.target.toString() + " = " + data.status.toString());

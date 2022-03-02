@@ -1,44 +1,53 @@
+// To parse this JSON data, do
+//
+//     final homepage = homepageFromJson(jsonString);
+
+import 'dart:convert';
+
+Homepage homepageFromJson(String str) => Homepage.fromJson(json.decode(str));
+
+String homepageToJson(Homepage data) => json.encode(data.toJson());
+
 class Homepage {
-  String? id;
-  bool? status;
-  String? target;
-  String? realita;
-  String? kategori;
-  String? subaktivitas;
-  String? waktu;
-  String? tanggal;
+  Homepage({
+    required this.id,
+    required this.status,
+    required this.target,
+    required this.realita,
+    required this.kategori,
+    required this.subaktivitas,
+    required this.waktu,
+    required this.tanggal,
+  });
 
-  Homepage(
-      {this.id,
-      this.status,
-      this.target,
-      this.realita,
-      this.kategori,
-      this.subaktivitas,
-      this.waktu,
-      this.tanggal});
+  String id;
+  bool status;
+  String target;
+  String realita;
+  String kategori;
+  String subaktivitas;
+  String waktu;
+  String tanggal;
 
-  Homepage.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    status = json['staus'];
-    target = json['target'];
-    realita = json['realita'];
-    kategori = json['kategori'];
-    subaktivitas = json['subaktivitas'];
-    waktu = json['waktu'];
-    tanggal = json['tanggal'];
-  }
+  factory Homepage.fromJson(Map<String, dynamic> json) => Homepage(
+        id: json["id"],
+        status: json["status"],
+        target: json["target"],
+        realita: json["realita"],
+        kategori: json["kategori"],
+        subaktivitas: json["subaktivitas"],
+        waktu: json["waktu"],
+        tanggal: json["tanggal"],
+      );
 
-  Map<String, dynamic> toJson() {
-    final data = <String, dynamic>{};
-    data['id'] = id;
-    data['staus'] = status;
-    data['target'] = target;
-    data['realita'] = realita;
-    data['kategori'] = kategori;
-    data['subaktivitas'] = subaktivitas;
-    data['waktu'] = waktu;
-    data['tanggal'] = tanggal;
-    return data;
-  }
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "status": status,
+        "target": target,
+        "realita": realita,
+        "kategori": kategori,
+        "subaktivitas": subaktivitas,
+        "waktu": waktu,
+        "tanggal": tanggal,
+      };
 }

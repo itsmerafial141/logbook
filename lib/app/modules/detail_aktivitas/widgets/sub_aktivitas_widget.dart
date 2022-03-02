@@ -19,6 +19,12 @@ class SubAktivitasWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var tittle = data.tittle.toString();
+    TextPainter textPainter = TextPainter()
+      ..text = TextSpan(text: tittle)
+      ..textDirection = TextDirection.ltr
+      ..layout(minWidth: 0, maxWidth: double.infinity);
+
     return Container(
       padding: EdgeInsets.all(10),
       child: Column(
@@ -75,7 +81,41 @@ class SubAktivitasWidget extends StatelessWidget {
               SizedBox(
                 width: 10,
               ),
-              Text(data.tittle.toString()),
+              Text(
+                tittle,
+                style: TextStyle(color: MyColors.textPrimary),
+              ),
+              // Stack(
+              //   alignment: Alignment.centerLeft,
+              //   children: [
+              //     controller.obx((state) {
+              //       if (data.status) {
+              //         return Text(
+              //           tittle,
+              //           style: TextStyle(color: MyColors.textDisable),
+              //         );
+              //       } else {
+              //         return Text(
+              //           tittle,
+              //           style: TextStyle(color: MyColors.textPrimary),
+              //         );
+              //       }
+              //     }),
+              //     controller.obx(
+              //       (state) {
+              //         if (data.status) {
+              //           return Container(
+              //             color: MyColors.textDisable,
+              //             width: textPainter.size.width,
+              //             height: 2,
+              //           );
+              //         } else {
+              //           return Container();
+              //         }
+              //       },
+              //     ),
+              //   ],
+              // ),
             ],
           ),
           SizedBox(
