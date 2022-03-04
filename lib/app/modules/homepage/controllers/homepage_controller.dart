@@ -46,6 +46,16 @@ class HomepageController extends GetxController {
         subaktivitas: "Analisis",
         waktu: "Sebelum Dzuhur",
         tanggal: "Jumat, 4 Maret 2022");
+    var aktivitas4 = Homepage(
+        id: "2",
+        status: false,
+        target: "Slicing Logbook Arkatama",
+        realita:
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ac, et at imperdiet rutrum. Pellentesque amet, mauris, hendrerit mi curabitur facilisis. Dolor enim vitae euismod sed consectetur",
+        kategori: "Other",
+        subaktivitas: "Develop",
+        waktu: "Sebelum Dzuhur",
+        tanggal: "Jumat, 4 Maret 2022");
     var aktivitas2 = Homepage(
         id: "0",
         status: false,
@@ -69,6 +79,7 @@ class HomepageController extends GetxController {
     listAktivitas.add(aktivitas);
     listAktivitas.add(aktivitas2);
     listAktivitas.add(aktivitas3);
+    listAktivitas.add(aktivitas4);
   }
 
   // void stateAktivitas() {

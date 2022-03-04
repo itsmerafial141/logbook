@@ -57,7 +57,6 @@ class ListBodyDetailAktivitasScreen extends GetView<DetailAktivitasController> {
           ),
           Column(
             children: [
-              // WaktuButtonDetailAktivitasScreen(controller: controller),
               DropdownSearch<String>(
                 mode: Mode.DIALOG,
                 maxHeight: 225,

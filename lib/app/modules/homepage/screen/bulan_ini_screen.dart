@@ -12,15 +12,18 @@ class BulanIniPage extends GetView<HomepageController> {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Container(
-        padding: MyConstraint.paddingBody,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            ShowCalendar(),
+            Container(
+                padding: MyConstraint.paddingBody * 0.5,
+                color: Colors.white,
+                child: ShowCalendar()),
             SizedBox(
               height: 20,
             ),
             Container(
+              padding: MyConstraint.paddingBody,
               child: Column(
                 children: [
                   AktivitasBody(),

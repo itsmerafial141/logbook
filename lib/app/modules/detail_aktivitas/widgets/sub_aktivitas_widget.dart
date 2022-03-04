@@ -25,107 +25,107 @@ class SubAktivitasWidget extends GetView<DetailAktivitasController> {
 
     return Container(
       padding: EdgeInsets.all(10),
-      child: Column(
-        children: [
-          Row(
-            children: [
-              Column(
-                children: [
-                  Container(
-                    width: 25,
-                    height: 3,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(100),
-                        color: MyColors.checkColor),
-                  ),
-                  SizedBox(
-                    height: 8,
-                  ),
-                  Container(
-                    width: 25,
-                    height: 3,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(100),
-                        color: MyColors.checkColor),
-                  ),
-                ],
-              ),
-              SizedBox(
-                width: 10,
-              ),
-              Container(
-                height: 18,
-                width: 18,
-                decoration: BoxDecoration(
-                    color: MyColors.checkColor,
-                    borderRadius: BorderRadius.circular(2)),
-                child: controller.obx(
-                  (value) {
-                    return Checkbox(
-                        side: BorderSide(style: BorderStyle.none),
-                        onChanged: (_) {
-                          controller.stateSubAktivitas(data);
-                        },
-                        value: data.status);
-                  },
-                  onLoading: Checkbox(
+      child: Obx(() {
+        var test = controller.dataCheck.value;
+        return Column(
+          children: [
+            Row(
+              children: [
+                Column(
+                  children: [
+                    Container(
+                      width: 25,
+                      height: 3,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(100),
+                          color: MyColors.checkColor),
+                    ),
+                    SizedBox(
+                      height: 8,
+                    ),
+                    Container(
+                      width: 25,
+                      height: 3,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(100),
+                          color: MyColors.checkColor),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  width: 10,
+                ),
+                Container(
+                  height: 18,
+                  width: 18,
+                  decoration: BoxDecoration(
+                      color: MyColors.checkColor,
+                      borderRadius: BorderRadius.circular(2)),
+                  child: Checkbox(
                       side: BorderSide(style: BorderStyle.none),
                       onChanged: (_) {
                         controller.stateSubAktivitas(data);
                       },
-                      value: false),
+                      value: data.status),
                 ),
-              ),
-              SizedBox(
-                width: 10,
-              ),
-              Text(
-                tittle,
-                style: TextStyle(color: MyColors.textPrimary),
-              ),
-              // Stack(
-              //   alignment: Alignment.centerLeft,
-              //   children: [
-              //     controller.obx((state) {
-              //       if (data.status) {
-              //         return Text(
-              //           tittle,
-              //           style: TextStyle(color: MyColors.textDisable),
-              //         );
-              //       } else {
-              //         return Text(
-              //           tittle,
-              //           style: TextStyle(color: MyColors.textPrimary),
-              //         );
-              //       }
-              //     }),
-              //     controller.obx(
-              //       (state) {
-              //         if (data.status) {
-              //           return Container(
-              //             color: MyColors.textDisable,
-              //             width: textPainter.size.width,
-              //             height: 2,
-              //           );
-              //         } else {
-              //           return Container();
-              //         }
-              //       },
-              //     ),
-              //   ],
-              // ),
-            ],
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          Container(
-            width: double.infinity,
-            height: 0.8,
-            color: MyColors.primaryColor,
-          ),
-        ],
-      ),
+                SizedBox(
+                  width: 10,
+                ),
+                Text(
+                  data.tittle,
+                  style: TextStyle(
+                    color: data.status
+                        ? MyColors.textDisable
+                        : MyColors.textPrimary,
+                    decoration: data.status
+                        ? TextDecoration.lineThrough
+                        : TextDecoration.none,
+                  ),
+                ),
+                // Stack(
+                //   alignment: Alignment.centerLeft,
+                //   children: [
+                //     controller.obx((state) {
+                //       if (data.status) {
+                //         return Text(
+                //           tittle,
+                //           style: TextStyle(color: MyColors.textDisable),
+                //         );
+                //       } else {
+                //         return Text(
+                //           tittle,
+                //           style: TextStyle(color: MyColors.textPrimary),
+                //         );
+                //       }
+                //     }),
+                //     controller.obx(
+                //       (state) {
+                //         if (data.status) {
+                //           return Container(
+                //             color: MyColors.textDisable,
+                //             width: textPainter.size.width,
+                //             height: 2,
+                //           );
+                //         } else {
+                //           return Container();
+                //         }
+                //       },
+                //     ),
+                //   ],
+                // ),
+              ],
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Container(
+              width: double.infinity,
+              height: 0.8,
+              color: MyColors.primaryColor,
+            ),
+          ],
+        );
+      }),
     );
   }
 }

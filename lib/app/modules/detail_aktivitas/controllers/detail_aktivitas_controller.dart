@@ -27,7 +27,7 @@ class DetailAktivitasController extends GetxController with StateMixin {
   RxBool onReport = false.obs;
   RxBool onOther = false.obs;
   RxBool onTarget = false.obs;
-  RxBool dataCheck = false.obs;
+  var dataCheck = false.obs;
   // RxString onKategoriSelected = "".obs;
 
   List<String> myListSubAktivitas = [
@@ -119,10 +119,12 @@ class DetailAktivitasController extends GetxController with StateMixin {
   }
 
   void stateSubAktivitas(DetailAktivitasModel data) {
-    dataCheck = data.status.obs;
+    dataCheck.value = data.status;
     dataCheck.toggle();
     data.status = dataCheck.value;
-    onSubAktivitasSelected = data.tittle.toString();
+    if (data.status) {
+      onSubAktivitasSelected = data.tittle.toString();
+    }
     print(onSubAktivitasSelected);
     print(data.tittle + " = " + data.status.toString());
     change(dataCheck.value, status: RxStatus.success());
