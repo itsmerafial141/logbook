@@ -1,4 +1,4 @@
-// ignore_for_file: deprecated_member_use
+// ignore_for_file: deprecated_member_use, unnecessary_null_comparison
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -110,12 +110,12 @@ class DetailAktivitasController extends GetxController with StateMixin {
   }
 
   bool checkValueIsValid() {
-    return !targetController.text.isEmpty &&
-        !realitaController.text.isEmpty &&
-        !onKategoriSelected.toString().isEmpty &&
-        !onSubAktivitasSelected.toString().isEmpty &&
-        !onWaktuSelected.toString().isEmpty &&
-        !formatedDate(initialDate.value).toString().isEmpty;
+    return targetController.text.isNotEmpty &&
+        realitaController.text.isNotEmpty &&
+        onKategoriSelected.toString().isNotEmpty &&
+        onSubAktivitasSelected.toString().isNotEmpty &&
+        onWaktuSelected.toString().isNotEmpty &&
+        formatedDate(initialDate.value).toString().isNotEmpty;
   }
 
   void stateSubAktivitas(DetailAktivitasModel data) {

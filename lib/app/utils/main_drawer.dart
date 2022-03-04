@@ -14,6 +14,7 @@ class MyDrawer extends StatelessWidget {
       color: Colors.white,
       width: MediaQuery.of(context).size.width * 0.75,
       child: Column(
+        mainAxisSize: MainAxisSize.max,
         children: [
           headerDrawer(context),
           Container(
@@ -22,6 +23,18 @@ class MyDrawer extends StatelessWidget {
             color: Color.fromARGB(125, 80, 155, 248),
           ),
           listDrawer(),
+          Spacer(),
+          Container(
+            padding: EdgeInsets.all(18),
+            child: CustomDrawerButton(
+              text: "Keluar",
+              paddingTittle: 15,
+              image: "assets/icons/fi_log-out.png",
+              onPressed: () {
+                Get.toNamed(AppPages.INITIAL_KG);
+              },
+            ),
+          ),
         ],
       ),
     );
@@ -29,8 +42,10 @@ class MyDrawer extends StatelessWidget {
 
   Container listDrawer() {
     return Container(
+      // color: Colors.red,
       padding: EdgeInsets.all(18),
       child: Column(
+        mainAxisSize: MainAxisSize.max,
         children: [
           CustomDrawerButton(
             text: "Laporan Aktivitas",
@@ -47,7 +62,8 @@ class MyDrawer extends StatelessWidget {
             onPressed: () {
               Get.toNamed(AppPages.INITIAL_KG);
             },
-          )
+          ),
+          // Spacer(),
         ],
       ),
     );

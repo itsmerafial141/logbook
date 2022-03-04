@@ -1,3 +1,5 @@
+// ignore_for_file: unused_local_variable
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -17,12 +19,6 @@ class SubAktivitasWidget extends GetView<DetailAktivitasController> {
 
   @override
   Widget build(BuildContext context) {
-    var tittle = data.tittle.toString();
-    TextPainter textPainter = TextPainter()
-      ..text = TextSpan(text: tittle)
-      ..textDirection = TextDirection.ltr
-      ..layout(minWidth: 0, maxWidth: double.infinity);
-
     return Container(
       padding: EdgeInsets.all(10),
       child: Obx(() {
@@ -82,37 +78,6 @@ class SubAktivitasWidget extends GetView<DetailAktivitasController> {
                         : TextDecoration.none,
                   ),
                 ),
-                // Stack(
-                //   alignment: Alignment.centerLeft,
-                //   children: [
-                //     controller.obx((state) {
-                //       if (data.status) {
-                //         return Text(
-                //           tittle,
-                //           style: TextStyle(color: MyColors.textDisable),
-                //         );
-                //       } else {
-                //         return Text(
-                //           tittle,
-                //           style: TextStyle(color: MyColors.textPrimary),
-                //         );
-                //       }
-                //     }),
-                //     controller.obx(
-                //       (state) {
-                //         if (data.status) {
-                //           return Container(
-                //             color: MyColors.textDisable,
-                //             width: textPainter.size.width,
-                //             height: 2,
-                //           );
-                //         } else {
-                //           return Container();
-                //         }
-                //       },
-                //     ),
-                //   ],
-                // ),
               ],
             ),
             SizedBox(

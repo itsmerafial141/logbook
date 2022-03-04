@@ -14,7 +14,10 @@ class MyHelper {
       Padding(
         padding: EdgeInsets.symmetric(horizontal: 10.0),
         child: IconButton(
-          icon: Icon(Icons.search),
+          icon: Image(
+              height: myDetailAppBar.preferredSize.height * 0.5,
+              width: myDetailAppBar.preferredSize.height * 0.5,
+              image: AssetImage("assets/icons/mi_filter.png")),
           onPressed: () {},
         ),
       ),
@@ -35,5 +38,10 @@ class MyHelper {
     centerTitle: false,
     backgroundColor: Colors.transparent,
     elevation: 0,
+  );
+  static final kategoriAppBar = AppBar(
+    backgroundColor: MyColors.primaryColor,
+    title: Text('Kategori'),
+    centerTitle: true,
   );
 }
