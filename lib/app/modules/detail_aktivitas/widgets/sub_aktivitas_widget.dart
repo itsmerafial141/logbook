@@ -5,16 +5,14 @@ import '../../values/colors.dart';
 import '../controllers/detail_aktivitas_controller.dart';
 import '../detail_aktivitas_model.dart';
 
-class SubAktivitasWidget extends StatelessWidget {
+class SubAktivitasWidget extends GetView<DetailAktivitasController> {
   const SubAktivitasWidget({
     Key? key,
     required this.data,
-    required this.controller,
     required this.index,
   }) : super(key: key);
 
   final DetailAktivitasModel data;
-  final DetailAktivitasController controller;
   final int index;
 
   @override

@@ -18,17 +18,18 @@ class _ShowCalendarState extends State<ShowCalendar> {
   Widget build(BuildContext context) {
     HomepageController controller = Get.put(HomepageController());
     return TableCalendar(
+      locale: "id_ID",
       focusedDay: DateTime.now(),
       firstDay: controller.firstDate,
       lastDay: controller.lastDate,
       calendarFormat: controller.calendarFormat,
       selectedDayPredicate: (day) {
-        return isSameDay(controller.selectedDay, day);
+        return isSameDay(controller.selectedDay.value, day);
       },
       onDaySelected: (selectedDay, focusedDay) {
-        if (!isSameDay(controller.selectedDay, focusedDay)) {
+        if (!isSameDay(controller.selectedDay.value, focusedDay)) {
           setState(() {
-            controller.selectedDay = selectedDay;
+            controller.selectedDay.value = selectedDay;
             controller.focusedDay;
           });
         }

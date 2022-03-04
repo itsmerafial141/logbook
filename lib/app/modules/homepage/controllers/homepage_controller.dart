@@ -1,29 +1,36 @@
-// ignore_for_file: prefer_typing_uninitialized_variables
-
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:loogbook_mobile_app/app/modules/homepage/homepage_model.dart';
 import 'package:table_calendar/table_calendar.dart';
 
-class HomepageController extends GetxController with StateMixin {
+class HomepageController extends GetxController {
   // var isCalenderDropdown = true.obs;
   // var stateViewDate = false.obs;
-  var listAktivitas = List<Homepage>.empty().obs;
+  final listAktivitas = List<Homepage>.empty().obs;
 
   DateTime focusedDay = DateTime.now();
   CalendarFormat calendarFormat = CalendarFormat.month;
-  DateTime? selectedDay;
+  var selectedDay = DateTime.now().obs;
 
   final firstDate = DateTime(2010, 1);
-  final lastDate = DateTime(2022, 12);
+  final lastDate = DateTime(2030, 12);
 
-  RxBool statusCheck = false.obs;
+  var statusCheck = false.obs;
 
   void stateAktivitas(Homepage data) {
-    statusCheck = data.status.obs;
+    statusCheck.value = data.status;
     statusCheck.toggle();
     data.status = statusCheck.value;
     print(data.target.toString() + " = " + data.status.toString());
-    change(statusCheck.value, status: RxStatus.success());
+  }
+
+  String formatedDate(DateTime date) {
+    var formatDate = DateFormat("EEEE, d MMMM yyyy", "id_ID");
+    return formatDate.format(date);
+  }
+
+  List<Homepage> getDataByDate(String date) {
+    return listAktivitas.where((element) => element.tanggal == date).toList();
   }
 
   @override
@@ -38,7 +45,7 @@ class HomepageController extends GetxController with StateMixin {
         kategori: "Design",
         subaktivitas: "Analisis",
         waktu: "Sebelum Dzuhur",
-        tanggal: "Sabtu, 25 Februari 2022");
+        tanggal: "Jumat, 4 Maret 2022");
     var aktivitas2 = Homepage(
         id: "0",
         status: false,
@@ -48,7 +55,7 @@ class HomepageController extends GetxController with StateMixin {
         kategori: "Concept",
         subaktivitas: "Wireframe",
         waktu: "Sesudah Dzuhur",
-        tanggal: "Sabtu, 25 Februari 2022");
+        tanggal: "Sabtu, 5 Maret 2022");
     var aktivitas3 = Homepage(
         id: "0",
         status: false,
@@ -58,7 +65,7 @@ class HomepageController extends GetxController with StateMixin {
         kategori: "Discuss",
         subaktivitas: "Prototyping",
         waktu: "Setelah Ashar",
-        tanggal: "Sabtu, 25 Februari 2022");
+        tanggal: "Minggu, 6 Maret 2022");
     listAktivitas.add(aktivitas);
     listAktivitas.add(aktivitas2);
     listAktivitas.add(aktivitas3);

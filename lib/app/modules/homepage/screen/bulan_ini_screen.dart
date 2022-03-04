@@ -10,7 +10,6 @@ import '../widget/list_aktivitas_widget.dart';
 class BulanIniPage extends GetView<HomepageController> {
   @override
   Widget build(BuildContext context) {
-    final deviceWidth = MediaQuery.of(context).size.width;
     return SingleChildScrollView(
       child: Container(
         padding: MyConstraint.paddingBody,
@@ -24,14 +23,11 @@ class BulanIniPage extends GetView<HomepageController> {
             Container(
               child: Column(
                 children: [
-                  AktivitasBody(deviceWidth: deviceWidth),
+                  AktivitasBody(),
                   SizedBox(
                     height: 20,
                   ),
-                  ListAktivitas(
-                    deviceWidth: deviceWidth,
-                    controller: controller,
-                  ),
+                  ListAktivitas(),
                 ],
               ),
             ),

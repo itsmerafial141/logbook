@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'package:get/get.dart';
 
@@ -20,6 +21,8 @@ void main() {
         fontFamily: 'Kanit',
         primaryColor: MyColors.primaryColor,
       ),
+      localizationsDelegates: [GlobalMaterialLocalizations.delegate],
+      supportedLocales: [Locale('id')],
     ),
   );
 }

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:loogbook_mobile_app/app/modules/detail_aktivitas/controllers/detail_aktivitas_controller.dart';
 
 import '../../values/colors.dart';
 
-class TargetBody extends StatelessWidget {
+class TargetBody extends GetView<DetailAktivitasController> {
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -25,6 +27,7 @@ class TargetBody extends StatelessWidget {
         ),
         Expanded(
           child: TextField(
+            controller: controller.targetController,
             decoration: InputDecoration(
                 hintText: "Masukkan Target/Ekspektasi...",
                 hintStyle: TextStyle(color: MyColors.textDisable),

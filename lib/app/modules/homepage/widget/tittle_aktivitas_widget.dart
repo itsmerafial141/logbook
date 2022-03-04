@@ -1,17 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:loogbook_mobile_app/app/modules/homepage/controllers/homepage_controller.dart';
 
 import '../../values/colors.dart';
 
-class AktivitasBody extends StatelessWidget {
-  const AktivitasBody({
-    Key? key,
-    required this.deviceWidth,
-  }) : super(key: key);
-
-  final double deviceWidth;
-
+class AktivitasBody extends GetView<HomepageController> {
   @override
   Widget build(BuildContext context) {
+    final deviceWidth = MediaQuery.of(context).size.width;
     return Container(
       // color: Colors.amber,
       width: deviceWidth,
@@ -22,11 +18,15 @@ class AktivitasBody extends StatelessWidget {
           SizedBox(
             width: 8.0,
           ),
-          Text("0",
-              style: TextStyle(
-                  color: MyColors.amber,
-                  fontWeight: FontWeight.w500,
-                  fontSize: 18)),
+          Obx(() {
+            var listData = controller.getDataByDate(
+                controller.formatedDate(controller.selectedDay.value));
+            return Text(listData.length.toString(),
+                style: TextStyle(
+                    color: MyColors.amber,
+                    fontWeight: FontWeight.w500,
+                    fontSize: 18));
+          }),
         ],
       ),
     );

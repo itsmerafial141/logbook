@@ -17,6 +17,9 @@ dependencies:
   flutter_slidable: ^1.2.0
   dropdown_button2: ^1.1.1
   dropdown_search: ^2.0.1
+  flutter_localizations: 
+    sdk: flutter
+    version: ^0.0.0
 
 dev_dependencies:
   flutter_lints: ^1.0.0
@@ -34,3 +37,6 @@ flutter:
     - family: Kanit
       fonts:
         - asset: fonts/Kanit-Regular.ttf
+
+flutter_localizations:
+  sdk: flutter

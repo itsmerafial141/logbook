@@ -1,5 +1,6 @@
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:loogbook_mobile_app/app/modules/detail_aktivitas/controllers/detail_aktivitas_controller.dart';
 import 'package:loogbook_mobile_app/app/modules/values/colors.dart';
 
@@ -11,29 +12,7 @@ import '../widgets/tittle_field_widget.dart';
 import '../widgets/button_add_sub_aktivitas_widget.dart';
 import '../widgets/custom_text_field_widget.dart';
 
-class ListBodyDetailAktivitasScreen extends StatelessWidget {
-  ListBodyDetailAktivitasScreen({
-    Key? key,
-    required this.controller,
-    // required this.target,
-    // required this.realita,
-    // required this.kategori,
-    // required this.tanggal,
-  }) : super(key: key);
-
-  // final TextEditingController target;
-  // final TextEditingController realita;
-  // final TextEditingController kategori;
-  // final TextEditingController tanggal;
-
-  final DetailAktivitasController controller;
-  final List<String> itemListWaktu = [
-    "Sebelum Dzuhur",
-    "Setelah Dzuhur",
-    "Setelah Ashar",
-    "Overtime",
-  ];
-
+class ListBodyDetailAktivitasScreen extends GetView<DetailAktivitasController> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -67,9 +46,7 @@ class ListBodyDetailAktivitasScreen extends StatelessWidget {
             height: 20,
           ),
           TittleField(tittle: "Sub-Aktivitas"),
-          ListDataSubAktivitas(
-            controller: controller,
-          ),
+          ListDataSubAktivitas(),
           ButtonAddSubAktivitasWidget(controller: controller),
           SizedBox(
             height: 10,
@@ -86,11 +63,12 @@ class ListBodyDetailAktivitasScreen extends StatelessWidget {
                 maxHeight: 225,
                 dropdownSearchTextAlignVertical: TextAlignVertical.center,
                 showSelectedItems: true,
-                items: itemListWaktu,
+                items: controller.itemListWaktu,
                 selectedItem: "Pilih waktu...",
                 hint: "Pilih waktu...",
                 onChanged: (value) {
-                  // controller.onWaktuSelected.value = value!;
+                  controller.onWaktuSelected = value.toString();
+                  print(controller.onWaktuSelected.toString());
                 },
                 showAsSuffixIcons: false,
                 dropdownSearchDecoration: InputDecoration(
@@ -105,10 +83,7 @@ class ListBodyDetailAktivitasScreen extends StatelessWidget {
               SizedBox(
                 height: 10,
               ),
-              TanggalButtonDetailAktivitasScreen(
-                controller: controller,
-                // tanggal: tanggal,
-              ),
+              TanggalButtonDetailAktivitasScreen(),
             ],
           )
         ],
