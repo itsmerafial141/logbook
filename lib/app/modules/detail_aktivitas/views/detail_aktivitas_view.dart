@@ -30,7 +30,7 @@ class DetailAktivitasView extends GetView<DetailAktivitasController> {
               "Target = ${controller.targetController.text}\n" +
               "Realita = ${controller.realitaController.text}\n" +
               "Kategori = ${controller.onKategoriSelected.toString()}\n" +
-              "Sub-Aktivitas = subAktivitas\n" +
+              "Sub-Aktivitas = ${controller.onSubAktivitasSelected}\n" +
               "Waktu = ${controller.onWaktuSelected.toString()}\n" +
               "Tanggal = ${controller.formatedDate(controller.initialDate.value).toString()}\n===========================");
           if (controller.checkValueIsValid()) {

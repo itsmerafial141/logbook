@@ -11,10 +11,10 @@ class DetailAktivitasController extends GetxController with StateMixin {
   var homepageC = Get.put(HomepageController());
 
   var listSubAktivitas = List<DetailAktivitasModel>.empty().obs;
-  var listAktivitas = List<Homepage>.empty().obs;
 
   RxBool listCheckSubAktivitas = false.obs;
-  var statusSelected = false.obs;
+  RxBool statusSelected = false.obs;
+  RxInt selectedKategori = 0.obs;
 
   Rx<DateTime> initialDate = DateTime.now().obs;
   Rx<DateTime> firstDate = DateTime(2000).obs;
@@ -27,16 +27,7 @@ class DetailAktivitasController extends GetxController with StateMixin {
   RxBool onReport = false.obs;
   RxBool onOther = false.obs;
   RxBool onTarget = false.obs;
-  var dataCheck = false.obs;
-  // RxString onKategoriSelected = "".obs;
-
-  List<String> myListSubAktivitas = [
-    "Analisis",
-    "Wireframe",
-    "Hi-fi Design",
-    "Prototyping",
-    "Testing",
-  ].obs;
+  RxBool dataCheck = false.obs;
 
   final List<String> itemListWaktu = [
     "Sebelum Dzuhur",
@@ -56,6 +47,15 @@ class DetailAktivitasController extends GetxController with StateMixin {
     "Build",
   ];
 
+  final List<String> listKategoriName = [
+    "Concept",
+    "Design",
+    "Discuss",
+    "Learn",
+    "Report",
+    "Other",
+  ];
+
   late TextEditingController targetController;
   late TextEditingController realitaController;
   late String onWaktuSelected;
@@ -70,12 +70,6 @@ class DetailAktivitasController extends GetxController with StateMixin {
     onWaktuSelected = "";
     onKategoriSelected = "";
     onSubAktivitasSelected = "";
-
-    var aktivitas = List<DetailAktivitasModel>.generate(
-      itemSubAktivitas.length,
-      (index) =>
-          DetailAktivitasModel(status: false, tittle: itemSubAktivitas[index]),
-    );
 
     for (var i = 0; i < itemSubAktivitas.length; i++) {
       var subAktivitas =
@@ -111,6 +105,8 @@ class DetailAktivitasController extends GetxController with StateMixin {
         waktu: onWaktuSelected.toString(),
         tanggal: formatedDate(initialDate.value).toString());
     homepageC.listAktivitas.add(aktivitas);
+    homepageC.listData.value =
+        homepageC.getDataByDate(formatedDate(homepageC.selectedDay.value));
   }
 
   bool checkValueIsValid() {
@@ -128,50 +124,11 @@ class DetailAktivitasController extends GetxController with StateMixin {
     data.status = dataCheck.value;
     if (data.status) {
       onSubAktivitasSelected = data.tittle.toString();
+    } else {
+      onSubAktivitasSelected = "";
     }
     print(onSubAktivitasSelected);
     print(data.tittle + " = " + data.status.toString());
     change(dataCheck.value, status: RxStatus.success());
-  }
-
-  void changeTargetToggle() {
-    onTarget.toggle();
-    print("onTarget : " + onTarget.toString());
-  }
-
-  void changeConceptState() {
-    onConcept.toggle();
-    onKategoriSelected = "Concept";
-    print("onConcept : " + onConcept.toString());
-  }
-
-  void changeDesignState() {
-    onDesign.toggle();
-    onKategoriSelected = "Design";
-    print("onDesign : " + onDesign.toString());
-  }
-
-  void changeDiscussState() {
-    onDiscuss.toggle();
-    onKategoriSelected = "Discuss";
-    print("onDiscuss : " + onDiscuss.toString());
-  }
-
-  void changeLearntState() {
-    onLearn.toggle();
-    onKategoriSelected = "Learn";
-    print("onLearn : " + onLearn.toString());
-  }
-
-  void changeReportState() {
-    onReport.toggle();
-    onKategoriSelected = "Report";
-    print("onReport : " + onReport.toString());
-  }
-
-  void changeOtherState() {
-    onOther.toggle();
-    onKategoriSelected = "Other";
-    print("onOther : " + onOther.toString());
   }
 }

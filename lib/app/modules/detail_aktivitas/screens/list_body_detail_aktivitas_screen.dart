@@ -1,6 +1,5 @@
 // ignore_for_file: deprecated_member_use
 
-import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loogbook_mobile_app/app/modules/detail_aktivitas/controllers/detail_aktivitas_controller.dart';
@@ -44,7 +43,7 @@ class ListBodyDetailAktivitasScreen extends GetView<DetailAktivitasController> {
           SizedBox(
             height: 10,
           ),
-          ListKategori(),
+          ListKategoriWidget(),
           SizedBox(
             height: 20,
           ),
@@ -70,5 +69,31 @@ class ListBodyDetailAktivitasScreen extends GetView<DetailAktivitasController> {
         ],
       ),
     );
+  }
+
+  Widget listKategoriIndex(String tittle, int index) {
+    return Container(
+        child: Obx(
+      () => ElevatedButton(
+        onPressed: () {
+          controller.selectedKategori.value = index;
+          controller.onKategoriSelected = tittle;
+        },
+        style: ElevatedButton.styleFrom(
+            side: BorderSide(color: MyColors.primaryColor),
+            shadowColor: Colors.white,
+            primary: controller.selectedKategori.value == index
+                ? MyColors.primaryColor
+                : Colors.white),
+        child: Text(
+          tittle,
+          style: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: controller.selectedKategori.value == index
+                  ? Colors.white
+                  : MyColors.textPrimary),
+        ),
+      ),
+    ));
   }
 }

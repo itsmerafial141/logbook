@@ -38,7 +38,6 @@ class TargetBody extends GetView<DetailAktivitasController> {
                 border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),
                     borderSide: BorderSide.none)),
-            // controller: target,]
             style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
           ),
         )

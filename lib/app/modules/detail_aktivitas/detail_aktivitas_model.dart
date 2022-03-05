@@ -1,7 +1,3 @@
-// To parse this JSON data, do
-//
-//     final detailAktivitasModel = detailAktivitasModelFromJson(jsonString);
-
 import 'dart:convert';
 
 DetailAktivitasModel detailAktivitasModelFromJson(String str) => DetailAktivitasModel.fromJson(json.decode(str));

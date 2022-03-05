@@ -6,15 +6,13 @@ import 'package:table_calendar/table_calendar.dart';
 class HomepageController extends GetxController {
   final listAktivitas = List<Homepage>.empty().obs;
   final listData = List<Homepage>.empty().obs;
+  final firstDate = DateTime(2010, 1);
+  final lastDate = DateTime(2030, 12);
+  var selectedDay = DateTime.now().obs;
+  var statusCheck = false.obs;
 
   DateTime focusedDay = DateTime.now();
   CalendarFormat calendarFormat = CalendarFormat.month;
-  var selectedDay = DateTime.now().obs;
-
-  final firstDate = DateTime(2010, 1);
-  final lastDate = DateTime(2030, 12);
-
-  var statusCheck = false.obs;
 
   void stateAktivitas(Homepage data) {
     statusCheck.value = data.status;
@@ -47,7 +45,6 @@ class HomepageController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-
     var aktivitas = Homepage(
         id: "1",
         status: false,
@@ -96,8 +93,4 @@ class HomepageController extends GetxController {
     selectedDay.value = DateTime.now();
     listData.value = getDataByDate(formatedDate(selectedDay.value));
   }
-
-  // void stateAktivitas() {
-  //   stateAktivitasValue.toggle();
-  // }
 }

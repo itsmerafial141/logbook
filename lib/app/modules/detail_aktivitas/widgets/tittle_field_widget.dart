@@ -14,7 +14,6 @@ class TittleField extends StatelessWidget {
   Widget build(BuildContext context) {
     final deviceWidth = MediaQuery.of(context).size.width;
     return Container(
-      // color: Colors.red,
       width: deviceWidth,
       child: Text(
         tittle,
