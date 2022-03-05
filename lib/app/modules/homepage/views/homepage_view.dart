@@ -14,7 +14,24 @@ class HomepageView extends GetView<HomepageController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MyHelper.myAppBar,
+      appBar: AppBar(
+        backgroundColor: MyColors.primaryColor,
+        title: Text('Aktivitasku'),
+        centerTitle: true,
+        actions: [
+          PopupMenuButton<String>(
+            icon: Image(
+                height: MyHelper.myDetailAppBar.preferredSize.height * 0.5,
+                width: MyHelper.myDetailAppBar.preferredSize.height * 0.5,
+                image: AssetImage("assets/icons/mi_filter.png")),
+            onSelected: (item) {
+              onSelected(context, item);
+            },
+            itemBuilder: (context) =>
+                [...MyHelper.listPopUpMenuItem.map(buildItem).toList()],
+          )
+        ],
+      ),
       body: BulanIniPage(),
       drawer: MyDrawer(),
       bottomNavigationBar: CustomButton(
@@ -31,5 +48,35 @@ class HomepageView extends GetView<HomepageController> {
         },
       ),
     );
+  }
+
+  void onSelected(BuildContext context, String item) {
+    switch (item) {
+      case "Aktivitas Tertunda":
+        controller.listData.value = controller.getDataByStatus(
+            false, controller.formatedDate(controller.selectedDay.value));
+        print(item);
+        break;
+      case "Aktivitas Selesai":
+        controller.listData.value = controller.getDataByStatus(
+            true, controller.formatedDate(controller.selectedDay.value));
+        print(controller.selectedDay.toString());
+        print(item);
+        break;
+      case "Semua Aktivitas":
+        controller.listData.value = controller.getDataByDate(
+            controller.formatedDate(controller.selectedDay.value));
+        print(item);
+        break;
+    }
+  }
+
+  PopupMenuItem<String> buildItem(String e) {
+    return PopupMenuItem(
+        value: e,
+        child: Text(
+          e,
+          style: TextStyle(color: MyColors.textPrimary),
+        ));
   }
 }

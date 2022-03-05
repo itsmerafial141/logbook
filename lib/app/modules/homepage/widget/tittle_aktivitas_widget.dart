@@ -19,9 +19,7 @@ class AktivitasBody extends GetView<HomepageController> {
             width: 8.0,
           ),
           Obx(() {
-            var listData = controller.getDataByDate(
-                controller.formatedDate(controller.selectedDay.value));
-            return Text(listData.length.toString(),
+            return Text(controller.listData.length.toString(),
                 style: TextStyle(
                     color: MyColors.amber,
                     fontWeight: FontWeight.w500,

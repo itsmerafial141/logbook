@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:loogbook_mobile_app/app/modules/homepage/controllers/homepage_controller.dart';
 
 import '../modules/values/colors.dart';
 
@@ -12,21 +13,7 @@ class MyHelper {
     "Semua Aktivitas",
   ];
 
-  static final myAppBar = AppBar(
-    backgroundColor: MyColors.primaryColor,
-    title: Text('Aktivitasku'),
-    centerTitle: true,
-    actions: [
-      PopupMenuButton<String>(
-        icon: Image(
-            height: myDetailAppBar.preferredSize.height * 0.5,
-            width: myDetailAppBar.preferredSize.height * 0.5,
-            image: AssetImage("assets/icons/mi_filter.png")),
-        itemBuilder: (context) =>
-            [...listPopUpMenuItem.map(buildItem).toList()],
-      )
-    ],
-  );
+  // static final myAppBar = 
 
   static final myDetailAppBar = AppBar(
     title: Text(
@@ -48,12 +35,4 @@ class MyHelper {
     title: Text('Kategori'),
     centerTitle: true,
   );
-
-  static PopupMenuItem<String> buildItem(String e) {
-    return PopupMenuItem(
-        child: Text(
-      e,
-      style: TextStyle(color: MyColors.textPrimary),
-    ));
-  }
 }

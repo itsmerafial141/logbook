@@ -4,9 +4,8 @@ import 'package:loogbook_mobile_app/app/modules/homepage/homepage_model.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class HomepageController extends GetxController {
-  // var isCalenderDropdown = true.obs;
-  // var stateViewDate = false.obs;
   final listAktivitas = List<Homepage>.empty().obs;
+  final listData = List<Homepage>.empty().obs;
 
   DateTime focusedDay = DateTime.now();
   CalendarFormat calendarFormat = CalendarFormat.month;
@@ -24,6 +23,11 @@ class HomepageController extends GetxController {
     print(data.target.toString() + " = " + data.status.toString());
   }
 
+  void deleteAktivitas(String id) {
+    listAktivitas.removeWhere((element) => element.id == id);
+    listData.removeWhere((element) => element.id == id);
+  }
+
   String formatedDate(DateTime date) {
     var formatDate = DateFormat("EEEE, d MMMM yyyy", "id_ID");
     return formatDate.format(date);
@@ -33,11 +37,19 @@ class HomepageController extends GetxController {
     return listAktivitas.where((element) => element.tanggal == date).toList();
   }
 
+  List<Homepage> getDataByStatus(bool status, String date) {
+    print(status);
+    return listAktivitas
+        .where((element) => element.status == status && element.tanggal == date)
+        .toList();
+  }
+
   @override
   void onInit() {
     super.onInit();
+
     var aktivitas = Homepage(
-        id: "0",
+        id: "1",
         status: false,
         target: "Re-Design Web Arkatama",
         realita:
@@ -57,7 +69,7 @@ class HomepageController extends GetxController {
         waktu: "Sebelum Dzuhur",
         tanggal: "Jumat, 4 Maret 2022");
     var aktivitas2 = Homepage(
-        id: "0",
+        id: "3",
         status: false,
         target: "Making New Project PWMP",
         realita:
@@ -67,7 +79,7 @@ class HomepageController extends GetxController {
         waktu: "Sesudah Dzuhur",
         tanggal: "Sabtu, 5 Maret 2022");
     var aktivitas3 = Homepage(
-        id: "0",
+        id: "4",
         status: false,
         target: "Slicing Logbook",
         realita:
@@ -80,6 +92,9 @@ class HomepageController extends GetxController {
     listAktivitas.add(aktivitas2);
     listAktivitas.add(aktivitas3);
     listAktivitas.add(aktivitas4);
+
+    selectedDay.value = DateTime.now();
+    listData.value = getDataByDate(formatedDate(selectedDay.value));
   }
 
   // void stateAktivitas() {

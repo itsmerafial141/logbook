@@ -18,11 +18,8 @@ class ListAktivitas extends GetView<HomepageController> {
   Widget build(BuildContext context) {
     final deviceWidth = MediaQuery.of(context).size.width;
     return Obx(() {
-      var listData = controller
-          .getDataByDate(controller.formatedDate(controller.selectedDay.value));
-      print(listData.length);
-      // print(listData[0].toString());
-      return listData.isEmpty
+      print(controller.listData.length);
+      return controller.listData.isEmpty
           ? Container(
               width: deviceWidth,
               child: Image(image: AssetImage("assets/images/empety_list.png")),
@@ -31,9 +28,9 @@ class ListAktivitas extends GetView<HomepageController> {
               shrinkWrap: true,
               physics: NeverScrollableScrollPhysics(),
               itemBuilder: (context, index) {
-                // final listData = controller.listAktivitas[index];
                 return SlidableWidget(
-                  data: listData[index],
+                  data: controller.listData[index],
+                  indexData: index,
                 );
               },
               separatorBuilder: (context, index) {
@@ -41,31 +38,36 @@ class ListAktivitas extends GetView<HomepageController> {
                   height: 10,
                 );
               },
-              itemCount: listData.length);
+              itemCount: controller.listData.length);
     });
   }
 }
 
-class SlidableWidget extends StatelessWidget {
+class SlidableWidget extends GetView<HomepageController> {
   SlidableWidget({
     required this.data,
+    required this.indexData,
   });
 
   final Homepage data;
+  final int indexData;
 
   @override
   Widget build(BuildContext context) {
     return Slidable(
       endActionPane: ActionPane(motion: ScrollMotion(), children: [
         SlidableAction(
-          onPressed: null,
+          onPressed: (context) {},
           icon: Icons.edit,
           backgroundColor: Colors.amber,
           foregroundColor: Colors.white,
           label: "Edit",
         ),
         SlidableAction(
-          onPressed: null,
+          onPressed: (context) {
+            print(indexData);
+            controller.deleteAktivitas(data.id);
+          },
           icon: Icons.delete,
           backgroundColor: Colors.red,
           foregroundColor: Colors.white,
