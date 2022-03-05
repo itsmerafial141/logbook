@@ -31,7 +31,7 @@ class MyDrawer extends StatelessWidget {
               paddingTittle: 15,
               image: "assets/icons/fi_log-out.png",
               onPressed: () {
-                Get.toNamed(AppPages.INITIAL_KG);
+                Get.offNamed(AppPages.INITIAL_KG);
               },
             ),
           ),
@@ -52,7 +52,7 @@ class MyDrawer extends StatelessWidget {
             paddingTittle: 15,
             image: "assets/icons/fi_activity.png",
             onPressed: () {
-              Get.toNamed(AppPages.INITIAL_HP);
+              Get.offNamed(AppPages.INITIAL_HP);
             },
           ),
           CustomDrawerButton(
@@ -60,7 +60,7 @@ class MyDrawer extends StatelessWidget {
             paddingTittle: 15,
             image: "assets/icons/u_layer-group.png",
             onPressed: () {
-              Get.toNamed(AppPages.INITIAL_KG);
+              Get.offNamed(AppPages.INITIAL_KG);
             },
           ),
           // Spacer(),

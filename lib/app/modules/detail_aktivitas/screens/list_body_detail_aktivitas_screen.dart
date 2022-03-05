@@ -13,6 +13,7 @@ import '../widgets/target_body_widget.dart';
 import '../widgets/tittle_field_widget.dart';
 import '../widgets/button_add_sub_aktivitas_widget.dart';
 import '../widgets/custom_text_field_widget.dart';
+import '../widgets/waktu_detail_aktiitas_widget.dart';
 
 class ListBodyDetailAktivitasScreen extends GetView<DetailAktivitasController> {
   @override
@@ -49,7 +50,7 @@ class ListBodyDetailAktivitasScreen extends GetView<DetailAktivitasController> {
           ),
           TittleField(tittle: "Sub-Aktivitas"),
           ListDataSubAktivitas(),
-          ButtonAddSubAktivitasWidget(controller: controller),
+          ButtonAddSubAktivitasWidget(),
           SizedBox(
             height: 10,
           ),
@@ -59,28 +60,7 @@ class ListBodyDetailAktivitasScreen extends GetView<DetailAktivitasController> {
           ),
           Column(
             children: [
-              DropdownSearch<String>(
-                mode: Mode.DIALOG,
-                maxHeight: 225,
-                dropdownSearchTextAlignVertical: TextAlignVertical.center,
-                showSelectedItems: true,
-                items: controller.itemListWaktu,
-                selectedItem: "Pilih waktu...",
-                hint: "Pilih waktu...",
-                onChanged: (value) {
-                  controller.onWaktuSelected = value.toString();
-                  print(controller.onWaktuSelected.toString());
-                },
-                showAsSuffixIcons: false,
-                dropdownSearchDecoration: InputDecoration(
-                    hoverColor: MyColors.primaryColor,
-                    fillColor: Colors.red,
-                    contentPadding:
-                        EdgeInsets.only(top: 3, bottom: 3, left: 20, right: 5),
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(5),
-                        borderSide: BorderSide(color: MyColors.primaryColor))),
-              ),
+              WaktuDetialAktivitasWidget(),
               SizedBox(
                 height: 10,
               ),

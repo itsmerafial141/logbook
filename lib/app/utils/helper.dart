@@ -6,21 +6,25 @@ import 'package:get/get.dart';
 import '../modules/values/colors.dart';
 
 class MyHelper {
+  static var listPopUpMenuItem = [
+    "Aktivitas Tertunda",
+    "Aktivitas Selesai",
+    "Semua Aktivitas",
+  ];
+
   static final myAppBar = AppBar(
     backgroundColor: MyColors.primaryColor,
     title: Text('Aktivitasku'),
     centerTitle: true,
     actions: [
-      Padding(
-        padding: EdgeInsets.symmetric(horizontal: 10.0),
-        child: IconButton(
-          icon: Image(
-              height: myDetailAppBar.preferredSize.height * 0.5,
-              width: myDetailAppBar.preferredSize.height * 0.5,
-              image: AssetImage("assets/icons/mi_filter.png")),
-          onPressed: () {},
-        ),
-      ),
+      PopupMenuButton<String>(
+        icon: Image(
+            height: myDetailAppBar.preferredSize.height * 0.5,
+            width: myDetailAppBar.preferredSize.height * 0.5,
+            image: AssetImage("assets/icons/mi_filter.png")),
+        itemBuilder: (context) =>
+            [...listPopUpMenuItem.map(buildItem).toList()],
+      )
     ],
   );
 
@@ -44,4 +48,12 @@ class MyHelper {
     title: Text('Kategori'),
     centerTitle: true,
   );
+
+  static PopupMenuItem<String> buildItem(String e) {
+    return PopupMenuItem(
+        child: Text(
+      e,
+      style: TextStyle(color: MyColors.textPrimary),
+    ));
+  }
 }

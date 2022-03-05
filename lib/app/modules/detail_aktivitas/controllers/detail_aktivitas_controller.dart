@@ -45,6 +45,17 @@ class DetailAktivitasController extends GetxController with StateMixin {
     "Overtime",
   ];
 
+  final List<String> itemSubAktivitas = [
+    "Analisis",
+    "Wireframe",
+    "Hi-fi Design",
+    "Prototyping",
+    "Testing",
+    "Development",
+    "Bug Fix",
+    "Build",
+  ];
+
   late TextEditingController targetController;
   late TextEditingController realitaController;
   late String onWaktuSelected;
@@ -60,24 +71,17 @@ class DetailAktivitasController extends GetxController with StateMixin {
     onKategoriSelected = "";
     onSubAktivitasSelected = "";
 
-    var subAktivitas1 = DetailAktivitasModel(status: false, tittle: "Analisis");
-    var subAktivitas2 =
-        DetailAktivitasModel(status: false, tittle: "Wireframe");
-    var subAktivitas3 =
-        DetailAktivitasModel(status: false, tittle: "Hi-fi Design");
-    var subAktivitas4 =
-        DetailAktivitasModel(status: false, tittle: "Prototyping");
-    var subAktivitas5 = DetailAktivitasModel(status: false, tittle: "Testing");
-    var subAktivitas6 =
-        DetailAktivitasModel(status: false, tittle: "Development");
-    var subAktivitas7 = DetailAktivitasModel(status: false, tittle: "Bug Fix");
-    listSubAktivitas.add(subAktivitas1);
-    listSubAktivitas.add(subAktivitas2);
-    listSubAktivitas.add(subAktivitas3);
-    listSubAktivitas.add(subAktivitas4);
-    listSubAktivitas.add(subAktivitas5);
-    listSubAktivitas.add(subAktivitas6);
-    listSubAktivitas.add(subAktivitas7);
+    var aktivitas = List<DetailAktivitasModel>.generate(
+      itemSubAktivitas.length,
+      (index) =>
+          DetailAktivitasModel(status: false, tittle: itemSubAktivitas[index]),
+    );
+
+    for (var i = 0; i < itemSubAktivitas.length; i++) {
+      var subAktivitas =
+          DetailAktivitasModel(status: false, tittle: itemSubAktivitas[i]);
+      listSubAktivitas.add(subAktivitas);
+    }
   }
 
   void stateTanggal(DateTime value) {
