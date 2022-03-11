@@ -25,16 +25,17 @@ class DetailAktivitasView extends GetView<DetailAktivitasController> {
         borderRadius: 5,
         textColor: Colors.white,
         onPressed: () {
-          print("Id = ${(homepageC.listAktivitas.length + 1).toString()}\n" +
-              "Status = false\n" +
-              "Target = ${controller.targetController.text}\n" +
-              "Realita = ${controller.realitaController.text}\n" +
-              "Kategori = ${controller.onKategoriSelected.toString()}\n" +
-              "Sub-Aktivitas = ${controller.onSubAktivitasSelected}\n" +
-              "Waktu = ${controller.onWaktuSelected.toString()}\n" +
-              "Tanggal = ${controller.formatedDate(controller.initialDate.value).toString()}\n===========================");
+          // print("Id = ${(homepageC.listAktivitas.length + 1).toString()}\n" +
+          //     "Status = false\n" +
+          //     "Target = ${controller.targetController.text}\n" +
+          //     "Realita = ${controller.realitaController.text}\n" +
+          //     "Kategori = ${controller.onKategoriSelected.toString()}\n" +
+          //     "Sub-Aktivitas = ${controller.onSubAktivitasSelected}\n" +
+          //     "Waktu = ${controller.onWaktuSelected.toString()}\n" +
+          //     "Tanggal = ${controller.formatedDate(controller.initialDate.value).toString()}\n===========================");
           if (controller.checkValueIsValid()) {
-            controller.addAktivitas();
+            // controller.addAktivitas();
+            controller.addAktivitases();
             Get.back();
           } else {
             print("Data harus terisi semua!");

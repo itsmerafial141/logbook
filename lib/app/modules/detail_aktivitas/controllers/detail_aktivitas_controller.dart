@@ -1,14 +1,15 @@
 // ignore_for_file: deprecated_member_use, unnecessary_null_comparison
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:loogbook_mobile_app/app/modules/detail_aktivitas/detail_aktivitas_model.dart';
 import 'package:loogbook_mobile_app/app/modules/homepage/controllers/homepage_controller.dart';
 import 'package:loogbook_mobile_app/app/modules/homepage/homepage_model.dart';
+import 'package:loogbook_mobile_app/app/modules/homepage/providers/homepage_provider.dart';
 
 class DetailAktivitasController extends GetxController with StateMixin {
   var homepageC = Get.put(HomepageController());
+  var homepageProvider = Get.put(HomepageProvider());
 
   var listSubAktivitas = List<DetailAktivitasModel>.empty().obs;
 
@@ -94,7 +95,7 @@ class DetailAktivitasController extends GetxController with StateMixin {
     return formatDate.format(date);
   }
 
-  void addAktivitas() {
+  void addAktivitasToList() {
     var aktivitas = Homepage(
         id: (homepageC.listAktivitas.length + 1).toString(),
         status: false,
@@ -130,5 +131,20 @@ class DetailAktivitasController extends GetxController with StateMixin {
     print(onSubAktivitasSelected);
     print(data.tittle + " = " + data.status.toString());
     change(dataCheck.value, status: RxStatus.success());
+  }
+
+  void addAktivitases() {
+    try {
+      homepageProvider.saveAktivitas(
+        formatedDate(initialDate.value).toString(),
+        targetController.text,
+        onKategoriSelected.toString(),
+        realitaController.text,
+        onWaktuSelected.toString(),
+      );
+      addAktivitasToList();
+    } catch (err) {
+      throw err.toString();
+    }
   }
 }

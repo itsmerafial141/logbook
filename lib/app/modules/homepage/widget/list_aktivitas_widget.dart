@@ -1,5 +1,6 @@
 // ignore_for_file: unused_local_variable
 
+import 'dart:convert';
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
@@ -18,7 +19,6 @@ class ListAktivitas extends GetView<HomepageController> {
   Widget build(BuildContext context) {
     final deviceWidth = MediaQuery.of(context).size.width;
     return Obx(() {
-      print(controller.listData.length);
       return controller.listData.isEmpty
           ? Container(
               width: deviceWidth,

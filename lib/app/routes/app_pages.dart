@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
-import 'package:provider/provider.dart';
+
+import 'package:loogbook_mobile_app/app/modules/edit_aktivitases/bindings/edit_aktivitases_binding.dart';
+import 'package:loogbook_mobile_app/app/modules/edit_aktivitases/views/edit_aktivitases_view.dart';
 
 import '../modules/detail_aktivitas/bindings/detail_aktivitas_binding.dart';
 import '../modules/detail_aktivitas/views/detail_aktivitas_view.dart';
@@ -27,14 +29,18 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.DETAIL_AKTIVITAS,
-      page: () => ChangeNotifierProvider(create: (_) {  },
-      child: DetailAktivitasView()),
+      page: () => DetailAktivitasView(),
       binding: DetailAktivitasBinding(),
     ),
     GetPage(
       name: _Paths.KATEGORI,
       page: () => KategoriView(),
       binding: KategoriBinding(),
+    ),
+    GetPage(
+      name: _Paths.EDIT_AKTIVITASES,
+      page: () => EditAktivitasesView(),
+      binding: EditAktivitasesBinding(),
     ),
   ];
 }

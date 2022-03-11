@@ -29,18 +29,19 @@ class TargetBody extends GetView<DetailAktivitasController> {
           child: TextField(
             controller: controller.targetController,
             decoration: InputDecoration(
-                hintText: "Masukkan Target/Ekspektasi...",
-                hintStyle: TextStyle(color: MyColors.textDisable),
-                contentPadding:
-                    EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-                filled: true,
-                fillColor: MyColors.checkColor,
-                border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(5),
-                    borderSide: BorderSide.none)),
+              hintText: "Masukkan Target/Ekspektasi...",
+              hintStyle: TextStyle(color: MyColors.textDisable),
+              contentPadding:
+                  EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+              filled: true,
+              fillColor: MyColors.checkColor,
+              border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(5),
+                  borderSide: BorderSide.none),
+            ),
             style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
           ),
-        )
+        ),
       ],
     );
   }
