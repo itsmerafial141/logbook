@@ -21,13 +21,6 @@ class DetailAktivitasController extends GetxController with StateMixin {
   Rx<DateTime> firstDate = DateTime(2000).obs;
   Rx<DateTime> lastDate = DateTime(2030).obs;
 
-  RxBool onConcept = false.obs;
-  RxBool onDesign = false.obs;
-  RxBool onDiscuss = false.obs;
-  RxBool onLearn = false.obs;
-  RxBool onReport = false.obs;
-  RxBool onOther = false.obs;
-  RxBool onTarget = false.obs;
   RxBool dataCheck = false.obs;
 
   final List<String> itemListWaktu = [
@@ -95,19 +88,22 @@ class DetailAktivitasController extends GetxController with StateMixin {
     return formatDate.format(date);
   }
 
-  void addAktivitasToList() {
+  void addAktivitasToList(String id) {
     var aktivitas = Homepage(
-        id: (homepageC.listAktivitas.length + 1).toString(),
-        status: false,
-        target: targetController.text,
-        realita: realitaController.text,
-        kategori: onKategoriSelected.toString(),
-        subaktivitas: onSubAktivitasSelected.toString(),
-        waktu: onWaktuSelected.toString(),
-        tanggal: formatedDate(initialDate.value).toString());
+      id: id,
+      status: false,
+      target: targetController.text,
+      realita: realitaController.text,
+      kategori: onKategoriSelected.toString(),
+      subaktivitas: onSubAktivitasSelected.toString(),
+      waktu: onWaktuSelected.toString(),
+      tanggal: formatedDate(initialDate.value).toString(),
+    );
     homepageC.listAktivitas.add(aktivitas);
-    homepageC.listData.value =
-        homepageC.getDataByDate(formatedDate(homepageC.selectedDay.value));
+    homepageC.listData.value = homepageC.getDataByDate(
+      formatedDate(homepageC.selectedDay.value),
+    );
+    change("success", status: RxStatus.success());
   }
 
   bool checkValueIsValid() {
@@ -130,19 +126,19 @@ class DetailAktivitasController extends GetxController with StateMixin {
     }
     print(onSubAktivitasSelected);
     print(data.tittle + " = " + data.status.toString());
-    change(dataCheck.value, status: RxStatus.success());
   }
 
   void addAktivitases() {
     try {
-      homepageProvider.saveAktivitas(
-        formatedDate(initialDate.value).toString(),
-        targetController.text,
-        onKategoriSelected.toString(),
-        realitaController.text,
-        onWaktuSelected.toString(),
-      );
-      addAktivitasToList();
+      homepageProvider
+          .saveAktivitas(
+            formatedDate(initialDate.value).toString(),
+            targetController.text,
+            onKategoriSelected.toString(),
+            realitaController.text,
+            onWaktuSelected.toString(),
+          )
+          .then((value) => addAktivitasToList(value.name));
     } catch (err) {
       throw err.toString();
     }

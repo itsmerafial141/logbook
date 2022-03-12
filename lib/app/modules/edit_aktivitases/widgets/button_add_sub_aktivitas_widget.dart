@@ -1,0 +1,92 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:loogbook_mobile_app/app/modules/edit_aktivitases/controllers/edit_aktivitases_controller.dart';
+import '../../values/colors.dart';
+
+class ButtonAddSubAktivitasWidget extends GetView<EditAktivitasesController> {
+  @override
+  Widget build(BuildContext context) {
+    var addSubAktivitasController = TextEditingController();
+    return Container(
+        width: double.infinity,
+        child: MaterialButton(
+          child: Row(
+            children: [
+              Icon(
+                Icons.add,
+                size: 15,
+                color: MyColors.textDarkDisable,
+              ),
+              Text(
+                "Tambah Sub-Aktivitas",
+                style: TextStyle(color: MyColors.textDarkDisable),
+              ),
+            ],
+          ),
+          onPressed: () {
+            dialogMethod(context, addSubAktivitasController);
+          },
+        ));
+  }
+
+  Future<dynamic> dialogMethod(
+      BuildContext context, TextEditingController addSubAktivitasController) {
+    return showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return Dialog(
+          backgroundColor: MyColors.backgroundColor,
+          insetAnimationCurve: Curves.easeInOut,
+          insetAnimationDuration: Duration(milliseconds: 500),
+          insetPadding: EdgeInsets.all(10),
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(5), side: BorderSide.none),
+          child: Wrap(
+            children: [
+              Container(
+                padding: EdgeInsets.all(10),
+                child: Column(
+                  children: [
+                    Container(
+                      child: TextField(
+                        controller: addSubAktivitasController,
+                        decoration: InputDecoration(
+                            filled: true,
+                            focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(5),
+                                borderSide: BorderSide.none),
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(5),
+                                borderSide: BorderSide.none),
+                            fillColor: MyColors.checkColor),
+                        style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            color: MyColors.textPrimary),
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(top: 10),
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                          color: MyColors.primaryColor,
+                          borderRadius: BorderRadius.circular(5)),
+                      child: MaterialButton(
+                        onPressed: () {
+                          controller
+                              .addSubAktivitas(addSubAktivitasController.text);
+                          Navigator.pop(context);
+                        },
+                        child: Text("Tambah Sub-Aktivitas",
+                            style: TextStyle(color: Colors.white)),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+}

@@ -13,7 +13,7 @@ class MyHelper {
     "Semua Aktivitas",
   ];
 
-  // static final myAppBar = 
+  // static final myAppBar =
 
   static final myDetailAppBar = AppBar(
     title: Text(
@@ -35,4 +35,30 @@ class MyHelper {
     title: Text('Kategori'),
     centerTitle: true,
   );
+}
+
+class LoadingWidget extends StatelessWidget {
+  const LoadingWidget({
+    required this.height,
+  });
+
+  final double height;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      alignment: Alignment.center,
+      width: double.infinity,
+      height: height,
+      decoration: BoxDecoration(
+        color: MyColors.checkColor,
+        borderRadius: BorderRadius.circular(5),
+      ),
+      child: Stack(
+        children: [
+          CircularProgressIndicator(),
+        ],
+      ),
+    );
+  }
 }

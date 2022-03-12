@@ -1,19 +1,19 @@
 // ignore_for_file: prefer_adjacent_string_concatenation
 
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 import 'package:get/get.dart';
 import 'package:loogbook_mobile_app/app/modules/homepage/controllers/homepage_controller.dart';
 import 'package:loogbook_mobile_app/app/modules/homepage/widget/custom_button_widget.dart';
 import 'package:loogbook_mobile_app/app/modules/values/colors.dart';
+import 'package:loogbook_mobile_app/app/routes/app_pages.dart';
 import 'package:loogbook_mobile_app/app/utils/helper.dart';
 
 import '../controllers/detail_aktivitas_controller.dart';
 import '../screens/list_body_detail_aktivitas_screen.dart';
 
 class DetailAktivitasView extends GetView<DetailAktivitasController> {
-  final homepageC = Get.put(HomepageController());
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,18 +25,9 @@ class DetailAktivitasView extends GetView<DetailAktivitasController> {
         borderRadius: 5,
         textColor: Colors.white,
         onPressed: () {
-          // print("Id = ${(homepageC.listAktivitas.length + 1).toString()}\n" +
-          //     "Status = false\n" +
-          //     "Target = ${controller.targetController.text}\n" +
-          //     "Realita = ${controller.realitaController.text}\n" +
-          //     "Kategori = ${controller.onKategoriSelected.toString()}\n" +
-          //     "Sub-Aktivitas = ${controller.onSubAktivitasSelected}\n" +
-          //     "Waktu = ${controller.onWaktuSelected.toString()}\n" +
-          //     "Tanggal = ${controller.formatedDate(controller.initialDate.value).toString()}\n===========================");
           if (controller.checkValueIsValid()) {
-            // controller.addAktivitas();
             controller.addAktivitases();
-            Get.back();
+            Get.offAllNamed(AppPages.INITIAL_HP);
           } else {
             print("Data harus terisi semua!");
           }

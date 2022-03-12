@@ -20,6 +20,7 @@ class AppPages {
   static const INITIAL_HP = Routes.HOMEPAGE;
   static const INITIAL_DK = Routes.DETAIL_AKTIVITAS;
   static const INITIAL_KG = Routes.KATEGORI;
+  static const INITIAL_EA = Routes.EDIT_AKTIVITASES;
 
   static final routes = [
     GetPage(

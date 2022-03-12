@@ -9,6 +9,7 @@ import 'package:get/get.dart';
 import 'package:loogbook_mobile_app/app/modules/homepage/controllers/homepage_controller.dart';
 import 'package:loogbook_mobile_app/app/modules/homepage/homepage_model.dart';
 import 'package:loogbook_mobile_app/app/modules/values/colors.dart';
+import 'package:loogbook_mobile_app/app/routes/app_pages.dart';
 
 class ListAktivitas extends GetView<HomepageController> {
   ListAktivitas({
@@ -18,7 +19,7 @@ class ListAktivitas extends GetView<HomepageController> {
   @override
   Widget build(BuildContext context) {
     final deviceWidth = MediaQuery.of(context).size.width;
-    return Obx(() {
+    return controller.obx((data) {
       return controller.listData.isEmpty
           ? Container(
               width: deviceWidth,
@@ -29,7 +30,7 @@ class ListAktivitas extends GetView<HomepageController> {
               physics: NeverScrollableScrollPhysics(),
               itemBuilder: (context, index) {
                 return SlidableWidget(
-                  data: controller.listData[index],
+                  data: data![index],
                   indexData: index,
                 );
               },
@@ -39,7 +40,7 @@ class ListAktivitas extends GetView<HomepageController> {
                 );
               },
               itemCount: controller.listData.length);
-    });
+    }, onLoading: CircularProgressIndicator());
   }
 }
 
@@ -57,7 +58,9 @@ class SlidableWidget extends GetView<HomepageController> {
     return Slidable(
       endActionPane: ActionPane(motion: ScrollMotion(), children: [
         SlidableAction(
-          onPressed: (context) {},
+          onPressed: (context) {
+            Get.toNamed(AppPages.INITIAL_EA, arguments: data.id);
+          },
           icon: Icons.edit,
           backgroundColor: Colors.amber,
           foregroundColor: Colors.white,
