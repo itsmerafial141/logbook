@@ -28,12 +28,17 @@ class _ShowCalendarState extends State<ShowCalendar> {
       },
       onDaySelected: (selectedDay, focusedDay) {
         if (!isSameDay(controller.selectedDay.value, focusedDay)) {
-          setState(() {
-            controller.selectedDay.value = selectedDay;
-            controller.focusedDay;
-            controller.listData.value = controller.getDataByDate(
-                controller.formatedDate(controller.selectedDay.value));
-          });
+          setState(
+            () {
+              controller.selectedDay.value = selectedDay;
+              controller.focusedDay;
+              controller.getDataByDate(
+                controller.formatedDate(
+                  controller.selectedDay.value,
+                ),
+              );
+            },
+          );
         }
       },
       onFormatChanged: (format) {

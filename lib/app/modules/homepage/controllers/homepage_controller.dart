@@ -1,6 +1,5 @@
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:loogbook_mobile_app/app/modules/homepage/aktivitas_response.dart';
 import 'package:loogbook_mobile_app/app/modules/homepage/homepage_model.dart';
 import 'package:table_calendar/table_calendar.dart';
 import '../providers/homepage_provider.dart';
@@ -27,7 +26,7 @@ class HomepageController extends GetxController
   void deleteAktivitas(String id) {
     listAktivitas.removeWhere((element) => element.id == id);
     listData.removeWhere((element) => element.id == id);
-    change(listData,status: RxStatus.success());
+    change(listData, status: RxStatus.success());
     print("this id = " + id);
     homepageProvider.deleteAktivitas(id);
   }
@@ -37,16 +36,19 @@ class HomepageController extends GetxController
     return formatDate.format(date);
   }
 
-  List<Homepage> getDataByDate(String date) {
-    change(listAktivitas.where((element) => element.tanggal == date).toList(),status: RxStatus.success());
-    return listAktivitas.where((element) => element.tanggal == date).toList();
+  void getDataByDate(String date) {
+    var data =
+        listAktivitas.where((element) => element.tanggal == date).toList();
+    listData.value = data;
+    change(data, status: RxStatus.success());
   }
 
-  List<Homepage> getDataByStatus(bool status, String date) {
-    print(status);
-    return listAktivitas
+  void getDataByStatus(bool status, String date) {
+    var data = listAktivitas
         .where((element) => element.status == status && element.tanggal == date)
         .toList();
+    listData.value = data;
+    change(data, status: RxStatus.success());
   }
 
   @override
@@ -74,9 +76,10 @@ class HomepageController extends GetxController
                     data.time,
                     entry.value.timestamp);
               }
-              change(listData,status: RxStatus.success());
+              change(listData, status: RxStatus.success());
             }
-            listData.value = getDataByDate(formatedDate(DateTime.now()));
+            // listData.value = getDataByDate(formatedDate(DateTime.now()));
+            getDataByDate(formatedDate(DateTime.now()));
           }
         },
         onError: (err) {
