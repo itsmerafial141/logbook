@@ -8,25 +8,26 @@ class ButtonAddSubAktivitasWidget extends GetView<DetailAktivitasController> {
   Widget build(BuildContext context) {
     var addSubAktivitasController = TextEditingController();
     return Container(
-        width: double.infinity,
-        child: MaterialButton(
-          child: Row(
-            children: [
-              Icon(
-                Icons.add,
-                size: 15,
-                color: MyColors.textDarkDisable,
-              ),
-              Text(
-                "Tambah Sub-Aktivitas",
-                style: TextStyle(color: MyColors.textDarkDisable),
-              ),
-            ],
-          ),
-          onPressed: () {
-            dialogMethod(context, addSubAktivitasController);
-          },
-        ));
+      width: double.infinity,
+      child: MaterialButton(
+        child: Row(
+          children: [
+            Icon(
+              Icons.add,
+              size: 15,
+              color: MyColors.textDarkDisable,
+            ),
+            Text(
+              "Tambah Sub-Aktivitas",
+              style: TextStyle(color: MyColors.textDarkDisable),
+            ),
+          ],
+        ),
+        onPressed: () {
+          dialogMethod(context, addSubAktivitasController);
+        },
+      ),
+    );
   }
 
   Future<dynamic> dialogMethod(
@@ -40,7 +41,9 @@ class ButtonAddSubAktivitasWidget extends GetView<DetailAktivitasController> {
           insetAnimationDuration: Duration(milliseconds: 500),
           insetPadding: EdgeInsets.all(10),
           shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(5), side: BorderSide.none),
+            borderRadius: BorderRadius.circular(5),
+            side: BorderSide.none,
+          ),
           child: Wrap(
             children: [
               Container(
@@ -53,31 +56,38 @@ class ButtonAddSubAktivitasWidget extends GetView<DetailAktivitasController> {
                         decoration: InputDecoration(
                             filled: true,
                             focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(5),
-                                borderSide: BorderSide.none),
+                              borderRadius: BorderRadius.circular(5),
+                              borderSide: BorderSide.none,
+                            ),
                             border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(5),
-                                borderSide: BorderSide.none),
+                              borderRadius: BorderRadius.circular(5),
+                              borderSide: BorderSide.none,
+                            ),
                             fillColor: MyColors.checkColor),
                         style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            color: MyColors.textPrimary),
+                          fontWeight: FontWeight.w600,
+                          color: MyColors.textPrimary,
+                        ),
                       ),
                     ),
                     Container(
                       margin: EdgeInsets.only(top: 10),
                       width: double.infinity,
                       decoration: BoxDecoration(
-                          color: MyColors.primaryColor,
-                          borderRadius: BorderRadius.circular(5)),
+                        color: MyColors.primaryColor,
+                        borderRadius: BorderRadius.circular(5),
+                      ),
                       child: MaterialButton(
                         onPressed: () {
-                          controller
-                              .addSubAktivitas(addSubAktivitasController.text);
+                          controller.addSubAktivitas(
+                            addSubAktivitasController.text,
+                          );
                           Navigator.pop(context);
                         },
-                        child: Text("Tambah Sub-Aktivitas",
-                            style: TextStyle(color: Colors.white)),
+                        child: Text(
+                          "Tambah Sub-Aktivitas",
+                          style: TextStyle(color: Colors.white),
+                        ),
                       ),
                     ),
                   ],

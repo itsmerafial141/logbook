@@ -4,9 +4,8 @@ import '../../values/colors.dart';
 
 class TittleField extends StatelessWidget {
   const TittleField({
-    Key? key,
     required this.tittle,
-  }) : super(key: key);
+  });
 
   final String tittle;
 
@@ -17,7 +16,10 @@ class TittleField extends StatelessWidget {
       width: deviceWidth,
       child: Text(
         tittle,
-        style: TextStyle(color: MyColors.textDisable, fontSize: 14),
+        style: TextStyle(
+          color: MyColors.textDisable,
+          fontSize: 14,
+        ),
       ),
     );
   }

@@ -2,6 +2,7 @@ import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loogbook_mobile_app/app/modules/detail_aktivitas/controllers/detail_aktivitas_controller.dart';
+import 'package:loogbook_mobile_app/app/modules/values/strings.dart';
 
 import '../../values/colors.dart';
 
@@ -14,7 +15,7 @@ class WaktuDetialAktivitasWidget extends GetView<DetailAktivitasController> {
         maxHeight: 225,
         dropdownSearchTextAlignVertical: TextAlignVertical.center,
         showSelectedItems: true,
-        items: controller.itemListWaktu,
+        items: MyList.itemListWaktu,
         selectedItem: controller.onWaktuSelected,
         onChanged: (value) {
           controller.onWaktuSelected = value.toString();

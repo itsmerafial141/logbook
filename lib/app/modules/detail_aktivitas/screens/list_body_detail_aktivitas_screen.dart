@@ -57,43 +57,12 @@ class ListBodyDetailAktivitasScreen extends GetView<DetailAktivitasController> {
           SizedBox(
             height: 10,
           ),
-          Column(
-            children: [
-              WaktuDetialAktivitasWidget(),
-              SizedBox(
-                height: 10,
-              ),
-              TanggalButtonDetailAktivitasScreen(),
-            ],
-          )
-        ],
-      ),
-    );
-  }
-
-  Widget listKategoriIndex(String tittle, int index) {
-    return Container(
-      child: Obx(
-        () => ElevatedButton(
-          onPressed: () {
-            controller.selectedKategori.value = index;
-            controller.onKategoriSelected = tittle;
-          },
-          style: ElevatedButton.styleFrom(
-              side: BorderSide(color: MyColors.primaryColor),
-              shadowColor: Colors.white,
-              primary: controller.selectedKategori.value == index
-                  ? MyColors.primaryColor
-                  : Colors.white),
-          child: Text(
-            tittle,
-            style: TextStyle(
-                fontWeight: FontWeight.bold,
-                color: controller.selectedKategori.value == index
-                    ? Colors.white
-                    : MyColors.textPrimary),
+          WaktuDetialAktivitasWidget(),
+          SizedBox(
+            height: 10,
           ),
-        ),
+          TanggalButtonDetailAktivitasScreen(),
+        ],
       ),
     );
   }

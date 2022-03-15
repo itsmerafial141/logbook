@@ -15,19 +15,21 @@ class HomepageProvider extends GetConnect {
     String reality,
     String time,
   ) async {
-    final body = json.encode({
-      "timestamp": timestamp,
-      "logs": [
-        {
-          "target": target,
-          "category": category,
-          "reality": reality,
-          "time": time,
-          "note": "Write something here",
-          "is_done": false
-        }
-      ]
-    });
+    final body = json.encode(
+      {
+        "timestamp": timestamp,
+        "logs": [
+          {
+            "target": target,
+            "category": category,
+            "reality": reality,
+            "time": time,
+            "note": "Write something here",
+            "is_done": false,
+          },
+        ],
+      },
+    );
     final response = await post(url + "/logs.json", body);
     if (response.status.hasError) {
       return Future.error(response.statusText.toString());

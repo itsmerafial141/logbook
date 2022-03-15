@@ -7,6 +7,7 @@ import 'package:loogbook_mobile_app/app/modules/homepage/controllers/homepage_co
 import 'package:loogbook_mobile_app/app/modules/homepage/providers/homepage_provider.dart';
 
 import '../../homepage/models/homepage_model.dart';
+import '../../values/strings.dart';
 import '../providers/aktivitas_provider.dart';
 
 class DetailAktivitasController extends GetxController with StateMixin {
@@ -18,42 +19,16 @@ class DetailAktivitasController extends GetxController with StateMixin {
 
   RxBool listCheckSubAktivitas = false.obs;
   RxBool statusSelected = false.obs;
+  RxBool dataCheck = false.obs;
+
   RxInt selectedKategori = 0.obs;
+
   RxString waktuSelected = "Pilih waktu....".obs;
   RxString tanggalSelected = "Pilih tanggal...".obs;
 
   Rx<DateTime> initialDate = DateTime.now().obs;
   Rx<DateTime> firstDate = DateTime(2000).obs;
   Rx<DateTime> lastDate = DateTime(2030).obs;
-
-  RxBool dataCheck = false.obs;
-
-  final List<String> itemListWaktu = [
-    "Sebelum Dzuhur",
-    "Setelah Dzuhur",
-    "Setelah Ashar",
-    "Overtime",
-  ].obs;
-
-  final List<String> itemSubAktivitas = [
-    "Analisis",
-    "Wireframe",
-    "Hi-fi Design",
-    "Prototyping",
-    "Testing",
-    "Development",
-    "Bug Fix",
-    "Build",
-  ];
-
-  final List<String> listKategoriName = [
-    "Concept",
-    "Design",
-    "Discuss",
-    "Learn",
-    "Report",
-    "Other",
-  ];
 
   late TextEditingController targetController;
   late TextEditingController realitaController;
@@ -71,9 +46,9 @@ class DetailAktivitasController extends GetxController with StateMixin {
     onKategoriSelected = "";
     onSubAktivitasSelected = "";
 
-    for (var i = 0; i < itemSubAktivitas.length; i++) {
-      var subAktivitas =
-          DetailAktivitasModel(status: false, tittle: itemSubAktivitas[i]);
+    for (var i = 0; i < MyList.itemSubAktivitas.length; i++) {
+      var subAktivitas = DetailAktivitasModel(
+          status: false, tittle: MyList.itemSubAktivitas[i]);
       listSubAktivitas.add(subAktivitas);
     }
     if (argument[0]["edit"]) {
@@ -83,10 +58,10 @@ class DetailAktivitasController extends GetxController with StateMixin {
     }
   }
 
-  void editAktivitas(String id) {
+  void editAktivitas() {
     try {
       detailProvider.updateAktivitas(
-        id,
+        argument[0]["id"],
         tanggalSelected.value,
         targetController.text,
         onKategoriSelected.toString(),
@@ -105,7 +80,8 @@ class DetailAktivitasController extends GetxController with StateMixin {
           var data = response.logs[0];
           targetController.text = data.target;
           realitaController.text = data.reality;
-          selectedKategori.value = listKategoriName.indexOf(data.category) + 1;
+          selectedKategori.value =
+              MyList.listKategoriName.indexOf(data.category) + 1;
           waktuSelected.value = data.time;
           onWaktuSelected = data.time;
           tanggalSelected.value = response.timestamp;
@@ -131,11 +107,36 @@ class DetailAktivitasController extends GetxController with StateMixin {
   void addSubAktivitas(String tittle) {
     var subAktivitas = DetailAktivitasModel(status: false, tittle: tittle);
     listSubAktivitas.add(subAktivitas);
+    change(null, status: RxStatus.success());
   }
 
-  String formatedDate(DateTime date) {
-    var formatDate = DateFormat("EEEE, d MMMM yyyy", "id_ID");
-    return formatDate.format(date);
+  void stateSubAktivitas(DetailAktivitasModel data) {
+    dataCheck.value = data.status;
+    dataCheck.toggle();
+    data.status = dataCheck.value;
+    if (data.status) {
+      onSubAktivitasSelected = data.tittle.toString();
+    } else {
+      onSubAktivitasSelected = "";
+    }
+  }
+
+  void addAktivitases() {
+    try {
+      homepageProvider
+          .saveAktivitas(
+            formatedDate(initialDate.value).toString(),
+            targetController.text,
+            onKategoriSelected.toString(),
+            realitaController.text,
+            onWaktuSelected.toString(),
+          )
+          .then(
+            (value) => addAktivitasToList(value.name),
+          );
+    } catch (err) {
+      throw err.toString();
+    }
   }
 
   void addAktivitasToList(String id) {
@@ -158,6 +159,11 @@ class DetailAktivitasController extends GetxController with StateMixin {
     change("success", status: RxStatus.success());
   }
 
+  String formatedDate(DateTime date) {
+    var formatDate = DateFormat("EEEE, d MMMM yyyy", "id_ID");
+    return formatDate.format(date);
+  }
+
   bool checkValueIsValid() {
     return targetController.text.isNotEmpty &&
         realitaController.text.isNotEmpty &&
@@ -165,36 +171,5 @@ class DetailAktivitasController extends GetxController with StateMixin {
         onSubAktivitasSelected.toString().isNotEmpty &&
         onWaktuSelected.toString().isNotEmpty &&
         formatedDate(initialDate.value).toString().isNotEmpty;
-  }
-
-  void stateSubAktivitas(DetailAktivitasModel data) {
-    dataCheck.value = data.status;
-    dataCheck.toggle();
-    data.status = dataCheck.value;
-    if (data.status) {
-      onSubAktivitasSelected = data.tittle.toString();
-    } else {
-      onSubAktivitasSelected = "";
-    }
-    print(onSubAktivitasSelected);
-    print(data.tittle + " = " + data.status.toString());
-  }
-
-  void addAktivitases() {
-    try {
-      homepageProvider
-          .saveAktivitas(
-            formatedDate(initialDate.value).toString(),
-            targetController.text,
-            onKategoriSelected.toString(),
-            realitaController.text,
-            onWaktuSelected.toString(),
-          )
-          .then(
-            (value) => addAktivitasToList(value.name),
-          );
-    } catch (err) {
-      throw err.toString();
-    }
   }
 }

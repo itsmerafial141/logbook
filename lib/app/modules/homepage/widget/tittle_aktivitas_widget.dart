@@ -9,22 +9,32 @@ class AktivitasBody extends GetView<HomepageController> {
   Widget build(BuildContext context) {
     final deviceWidth = MediaQuery.of(context).size.width;
     return Container(
-      // color: Colors.amber,
       width: deviceWidth,
       child: Row(
         children: [
-          Text("Aktivitas",
-              style: TextStyle(color: MyColors.textPrimary, fontSize: 18)),
+          Text(
+            "Aktivitas",
+            style: TextStyle(
+              color: MyColors.textPrimary,
+              fontSize: 18,
+            ),
+          ),
           SizedBox(
             width: 8.0,
           ),
-          Obx(() {
-            return Text(controller.listData.length.toString(),
+          controller.obx(
+            (data) {
+              return Text(
+                data!.length.toString(),
                 style: TextStyle(
-                    color: MyColors.amber,
-                    fontWeight: FontWeight.w500,
-                    fontSize: 18));
-          }),
+                  color: MyColors.amber,
+                  fontWeight: FontWeight.w500,
+                  fontSize: 18,
+                ),
+              );
+            },
+            onLoading: CircularProgressIndicator(),
+          ),
         ],
       ),
     );

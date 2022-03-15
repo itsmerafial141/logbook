@@ -28,7 +28,7 @@ class DetailAktivitasView extends GetView<DetailAktivitasController> {
           onPressed: () {
             if (controller.checkValueIsValid()) {
               if (controller.argument[0]["edit"]) {
-                controller.editAktivitas(controller.argument[0]["id"]);
+                controller.editAktivitas();
               } else {
                 controller.addAktivitases();
               }

@@ -15,8 +15,9 @@ class TargetBody extends GetView<DetailAktivitasController> {
           height: 30,
           width: 30,
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(5),
-              color: MyColors.checkColor),
+            borderRadius: BorderRadius.circular(5),
+            color: MyColors.checkColor,
+          ),
           child: Checkbox(
             onChanged: (_) {},
             side: BorderSide(style: BorderStyle.none),
@@ -33,8 +34,10 @@ class TargetBody extends GetView<DetailAktivitasController> {
               decoration: InputDecoration(
                 hintText: "Masukkan Target/Ekspektasi...",
                 hintStyle: TextStyle(color: MyColors.textDisable),
-                contentPadding:
-                    EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                contentPadding: EdgeInsets.symmetric(
+                  vertical: 10,
+                  horizontal: 20,
+                ),
                 filled: true,
                 fillColor: MyColors.checkColor,
                 border: OutlineInputBorder(
@@ -42,7 +45,10 @@ class TargetBody extends GetView<DetailAktivitasController> {
                   borderSide: BorderSide.none,
                 ),
               ),
-              style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                fontSize: 15,
+                fontWeight: FontWeight.bold,
+              ),
             ),
             onLoading: LoadingWidget(
               height: 50,
