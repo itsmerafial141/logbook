@@ -58,19 +58,41 @@ class HomepageView extends GetView<HomepageController> {
   void onSelected(BuildContext context, String item) {
     switch (item) {
       case "Aktivitas Tertunda":
-        controller.listData.value = controller.getDataByStatus(
-            false, controller.formatedDate(controller.selectedDay.value));
+        // controller.listData.value = controller.getDataByStatus(
+        //     false, controller.formatedDate(controller.selectedDay.value));
+        controller.getDataByStatus(
+          false,
+          controller.formatedDate(
+            controller.selectedDay.value,
+          ),
+        );
+        print("============tertunda=========");
         print(item);
+        print(controller.formatedDate(controller.selectedDay.value));
+
         break;
       case "Aktivitas Selesai":
-        controller.listData.value = controller.getDataByStatus(
-            true, controller.formatedDate(controller.selectedDay.value));
-        print(controller.selectedDay.toString());
+        // controller.listData.value = controller.getDataByStatus(
+        //     true, controller.formatedDate(controller.selectedDay.value));
+        controller.getDataByStatus(
+          true,
+          controller.formatedDate(
+            controller.selectedDay.value,
+          ),
+        );
+        print("============selesai=========");
         print(item);
+        print(controller.formatedDate(controller.selectedDay.value));
         break;
       case "Semua Aktivitas":
-        controller.listData.value = controller.getDataByDate(
-            controller.formatedDate(controller.selectedDay.value));
+        // controller.listData.value = controller.getDataByDate(
+        //     controller.formatedDate(controller.selectedDay.value));
+        controller.getDataByDate(
+          controller.formatedDate(
+            controller.selectedDay.value,
+          ),
+        );
+        print("=====================");
         print(item);
         break;
     }
