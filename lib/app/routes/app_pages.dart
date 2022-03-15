@@ -1,8 +1,5 @@
 import 'package:get/get.dart';
 
-import 'package:loogbook_mobile_app/app/modules/edit_aktivitases/bindings/edit_aktivitases_binding.dart';
-import 'package:loogbook_mobile_app/app/modules/edit_aktivitases/views/edit_aktivitases_view.dart';
-
 import '../modules/detail_aktivitas/bindings/detail_aktivitas_binding.dart';
 import '../modules/detail_aktivitas/views/detail_aktivitas_view.dart';
 import '../modules/homepage/bindings/homepage_binding.dart';
@@ -20,7 +17,6 @@ class AppPages {
   static const INITIAL_HP = Routes.HOMEPAGE;
   static const INITIAL_DK = Routes.DETAIL_AKTIVITAS;
   static const INITIAL_KG = Routes.KATEGORI;
-  static const INITIAL_EA = Routes.EDIT_AKTIVITASES;
 
   static final routes = [
     GetPage(
@@ -37,11 +33,6 @@ class AppPages {
       name: _Paths.KATEGORI,
       page: () => KategoriView(),
       binding: KategoriBinding(),
-    ),
-    GetPage(
-      name: _Paths.EDIT_AKTIVITASES,
-      page: () => EditAktivitasesView(),
-      binding: EditAktivitasesBinding(),
     ),
   ];
 }

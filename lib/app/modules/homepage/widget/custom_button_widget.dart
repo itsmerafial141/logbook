@@ -30,7 +30,9 @@ class CustomButton extends StatelessWidget {
       height: MyHelper.kategoriAppBar.preferredSize.height * 0.8,
       margin: EdgeInsets.all(10.0),
       decoration: BoxDecoration(
-          color: color, borderRadius: BorderRadius.circular(borderRadius!)),
+        color: color,
+        borderRadius: BorderRadius.circular(borderRadius!),
+      ),
       child: MaterialButton(
         onPressed: onPressed,
         child: useLeading
@@ -48,10 +50,15 @@ class CustomButton extends StatelessWidget {
                   Text(
                     text,
                     style: TextStyle(color: textColor!),
-                  )
+                  ),
                 ],
               )
-            : Text(text, style: TextStyle(color: textColor!)),
+            : Text(
+                text,
+                style: TextStyle(
+                  color: textColor!,
+                ),
+              ),
       ),
     );
   }

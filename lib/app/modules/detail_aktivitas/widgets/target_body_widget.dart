@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loogbook_mobile_app/app/modules/detail_aktivitas/controllers/detail_aktivitas_controller.dart';
 
+import '../../../utils/helper.dart';
 import '../../values/colors.dart';
 
 class TargetBody extends GetView<DetailAktivitasController> {
@@ -26,20 +27,26 @@ class TargetBody extends GetView<DetailAktivitasController> {
           width: 15,
         ),
         Expanded(
-          child: TextField(
-            controller: controller.targetController,
-            decoration: InputDecoration(
-              hintText: "Masukkan Target/Ekspektasi...",
-              hintStyle: TextStyle(color: MyColors.textDisable),
-              contentPadding:
-                  EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-              filled: true,
-              fillColor: MyColors.checkColor,
-              border: OutlineInputBorder(
+          child: controller.obx(
+            (_) => TextField(
+              controller: controller.targetController,
+              decoration: InputDecoration(
+                hintText: "Masukkan Target/Ekspektasi...",
+                hintStyle: TextStyle(color: MyColors.textDisable),
+                contentPadding:
+                    EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                filled: true,
+                fillColor: MyColors.checkColor,
+                border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(5),
-                  borderSide: BorderSide.none),
+                  borderSide: BorderSide.none,
+                ),
+              ),
+              style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
             ),
-            style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+            onLoading: LoadingWidget(
+              height: 50,
+            ),
           ),
         ),
       ],

@@ -1,15 +1,15 @@
 // ignore_for_file: unused_local_variable
 
-import 'dart:convert';
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
 import 'package:loogbook_mobile_app/app/modules/homepage/controllers/homepage_controller.dart';
-import 'package:loogbook_mobile_app/app/modules/homepage/homepage_model.dart';
 import 'package:loogbook_mobile_app/app/modules/values/colors.dart';
 import 'package:loogbook_mobile_app/app/routes/app_pages.dart';
+
+import '../models/homepage_model.dart';
 
 class ListAktivitas extends GetView<HomepageController> {
   ListAktivitas({
@@ -59,7 +59,15 @@ class SlidableWidget extends GetView<HomepageController> {
       endActionPane: ActionPane(motion: ScrollMotion(), children: [
         SlidableAction(
           onPressed: (context) {
-            Get.toNamed(AppPages.INITIAL_EA, arguments: data.id);
+            Get.toNamed(
+              AppPages.INITIAL_DK,
+              arguments: [
+                {
+                  "id": data.id,
+                  "edit": true,
+                },
+              ],
+            );
           },
           icon: Icons.edit,
           backgroundColor: Colors.amber,

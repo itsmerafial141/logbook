@@ -1,8 +1,7 @@
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:loogbook_mobile_app/app/modules/homepage/aktivitas_response.dart';
-import 'package:loogbook_mobile_app/app/modules/homepage/homepage_model.dart';
 import 'package:table_calendar/table_calendar.dart';
+import '../models/homepage_model.dart';
 import '../providers/homepage_provider.dart';
 
 class HomepageController extends GetxController
@@ -27,7 +26,7 @@ class HomepageController extends GetxController
   void deleteAktivitas(String id) {
     listAktivitas.removeWhere((element) => element.id == id);
     listData.removeWhere((element) => element.id == id);
-    change(listData,status: RxStatus.success());
+    change(listData, status: RxStatus.success());
     print("this id = " + id);
     homepageProvider.deleteAktivitas(id);
   }
@@ -38,7 +37,8 @@ class HomepageController extends GetxController
   }
 
   List<Homepage> getDataByDate(String date) {
-    change(listAktivitas.where((element) => element.tanggal == date).toList(),status: RxStatus.success());
+    change(listAktivitas.where((element) => element.tanggal == date).toList(),
+        status: RxStatus.success());
     return listAktivitas.where((element) => element.tanggal == date).toList();
   }
 
@@ -61,6 +61,7 @@ class HomepageController extends GetxController
     try {
       homepageProvider.showAktivitas().then(
         (response) {
+          // ignore: unnecessary_null_comparison
           if (response != null) {
             for (var entry in response.entries) {
               for (var data in entry.value.logs) {
@@ -74,7 +75,7 @@ class HomepageController extends GetxController
                     data.time,
                     entry.value.timestamp);
               }
-              change(listData,status: RxStatus.success());
+              change(listData, status: RxStatus.success());
             }
             listData.value = getDataByDate(formatedDate(DateTime.now()));
           }

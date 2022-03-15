@@ -1,8 +1,9 @@
 import 'dart:convert';
 
 import 'package:get/get.dart';
-import 'package:loogbook_mobile_app/app/modules/homepage/aktivitas_response.dart';
-import 'package:loogbook_mobile_app/app/modules/homepage/homepage.dart';
+
+import '../models/aktivitas_response.dart';
+import '../models/homepage.dart';
 
 class HomepageProvider extends GetConnect {
   final url = "https://logbook-4b79b-default-rtdb.firebaseio.com/";

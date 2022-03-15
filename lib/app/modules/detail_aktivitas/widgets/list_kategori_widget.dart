@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../utils/helper.dart';
 import '../../values/colors.dart';
 import '../controllers/detail_aktivitas_controller.dart';
 
 class ListKategoriWidget extends GetView<DetailAktivitasController> {
   @override
   Widget build(BuildContext context) {
-    var listKategoriCard =
-        List.generate(controller.listKategoriName.length, (int index) {
-      return listKategoriIndex(controller.listKategoriName[index], index + 1);
-    });
-    return GridView.count(
+    var listKategoriCard = List.generate(
+      controller.listKategoriName.length,
+      (int index) {
+        return listKategoriIndex(controller.listKategoriName[index], index + 1);
+      },
+    );
+    return controller.obx(
+      (_) => GridView.count(
         primary: false,
         physics: NeverScrollableScrollPhysics(),
         shrinkWrap: true,
@@ -19,7 +23,12 @@ class ListKategoriWidget extends GetView<DetailAktivitasController> {
         crossAxisSpacing: 10,
         mainAxisSpacing: 10,
         crossAxisCount: 3,
-        children: listKategoriCard);
+        children: listKategoriCard,
+      ),
+      onLoading: LoadingWidget(
+        height: 100,
+      ),
+    );
   }
 
   Widget listKategoriIndex(String tittle, int index) {

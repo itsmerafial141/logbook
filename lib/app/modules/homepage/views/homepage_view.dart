@@ -44,7 +44,12 @@ class HomepageView extends GetView<HomepageController> {
         textColor: Colors.white,
         borderRadius: 5,
         onPressed: () {
-          Get.toNamed(AppPages.INITIAL_DK);
+          Get.toNamed(
+            AppPages.INITIAL_DK,
+            arguments: [
+              {"edit": false},
+            ],
+          );
         },
       ),
     );
