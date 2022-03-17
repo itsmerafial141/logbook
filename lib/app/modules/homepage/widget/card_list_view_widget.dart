@@ -21,6 +21,7 @@ class CardListViewWidget extends GetView<HomepageController> {
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10), color: Colors.white),
       child: Obx(() {
+        // ignore: unused_local_variable
         var test = controller.statusCheck.value;
         return Column(
           children: [

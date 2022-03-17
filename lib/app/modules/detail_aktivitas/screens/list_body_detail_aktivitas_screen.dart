@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loogbook_mobile_app/app/modules/detail_aktivitas/controllers/detail_aktivitas_controller.dart';
-import 'package:loogbook_mobile_app/app/modules/values/colors.dart';
 
 import '../widgets/list_data_aktivitas_widget.dart';
 import '../widgets/list_kategori_widget.dart';

@@ -1,11 +1,13 @@
 // ignore_for_file: deprecated_member_use, unnecessary_null_comparison
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:loogbook_mobile_app/app/modules/detail_aktivitas/detail_aktivitas_model.dart';
+import 'package:loogbook_mobile_app/app/modules/detail_aktivitas/models/detail_aktivitas_model.dart';
 import 'package:loogbook_mobile_app/app/modules/homepage/controllers/homepage_controller.dart';
 import 'package:loogbook_mobile_app/app/modules/homepage/providers/homepage_provider.dart';
 
+import '../../../routes/app_pages.dart';
 import '../../homepage/models/homepage_model.dart';
 import '../../values/strings.dart';
 import '../providers/aktivitas_provider.dart';
@@ -51,6 +53,7 @@ class DetailAktivitasController extends GetxController with StateMixin {
           status: false, tittle: MyList.itemSubAktivitas[i]);
       listSubAktivitas.add(subAktivitas);
     }
+    
     if (argument[0]["edit"]) {
       showEditAktivitas();
     } else {
@@ -60,14 +63,18 @@ class DetailAktivitasController extends GetxController with StateMixin {
 
   void editAktivitas() {
     try {
-      detailProvider.updateAktivitas(
-        argument[0]["id"],
-        tanggalSelected.value,
-        targetController.text,
-        onKategoriSelected.toString(),
-        realitaController.text,
-        onWaktuSelected.toString(),
-      );
+      detailProvider
+          .updateAktivitas(
+            argument[0]["id"],
+            tanggalSelected.value,
+            targetController.text,
+            onKategoriSelected.toString(),
+            realitaController.text,
+            onWaktuSelected.toString(),
+          )
+          .then(
+            (value) => Get.offAllNamed(AppPages.INITIAL_HP),
+          );
     } catch (err) {
       throw err.toString();
     }
@@ -121,23 +128,14 @@ class DetailAktivitasController extends GetxController with StateMixin {
     }
   }
 
-  void addAktivitases() {
-    try {
-      homepageProvider
-          .saveAktivitas(
-            formatedDate(initialDate.value).toString(),
-            targetController.text,
-            onKategoriSelected.toString(),
-            realitaController.text,
-            onWaktuSelected.toString(),
-          )
-          .then(
-            (value) => addAktivitasToList(value.name),
-          );
-    } catch (err) {
-      throw err.toString();
-    }
-  }
+  // void addAktivitases() async {
+  //   var connectivityResult = await Connectivity().checkConnectivity();
+  //   if (connectivityResult == ConnectivityResult.none) {
+  //     addAktivitasLocale();
+  //   } else {
+  //     addAktivitasOnline();
+  //   }
+  // }
 
   void addAktivitasToList(String id) {
     var aktivitas = Homepage(
@@ -156,7 +154,7 @@ class DetailAktivitasController extends GetxController with StateMixin {
         homepageC.selectedDay.value,
       ),
     );
-    change("success", status: RxStatus.success());
+    Get.offAllNamed(AppPages.INITIAL_HP);
   }
 
   String formatedDate(DateTime date) {
@@ -171,5 +169,53 @@ class DetailAktivitasController extends GetxController with StateMixin {
         onSubAktivitasSelected.toString().isNotEmpty &&
         onWaktuSelected.toString().isNotEmpty &&
         formatedDate(initialDate.value).toString().isNotEmpty;
+  }
+
+  // void addAktivitasLocale() {
+  //   try {
+  //     var aktivitas = Homepage(
+  //       id: targetController.text + DateTime.now().millisecond.toString(),
+  //       status: false,
+  //       target: targetController.text,
+  //       realita: realitaController.text,
+  //       kategori: onKategoriSelected.toString(),
+  //       subaktivitas: "subaktivitas",
+  //       waktu: onWaktuSelected.toString(),
+  //       tanggal: formatedDate(initialDate.value).toString(),
+  //     );
+  //     homepageC.listAktivitas.add(aktivitas);
+  //     homepageC.getDataByDate(onWaktuSelected.toString());
+  //     homepageC.localDataAktivitas.write("localData", homepageC.listAktivitas);
+  //     print("add offline");
+  //     change(null, status: RxStatus.success());
+  //   } catch (err) {
+  //     change(null, status: RxStatus.error());
+  //     throw err.toString();
+  //   }
+  // }
+
+  void addAktivitas() {
+    try {
+      homepageProvider
+          .saveAktivitas(
+            formatedDate(initialDate.value).toString(),
+            targetController.text,
+            onKategoriSelected.toString(),
+            realitaController.text,
+            onWaktuSelected.toString(),
+          )
+          .then(
+            (value) => addAktivitasToList(value.name),
+          );
+      change(null, status: RxStatus.success());
+    } catch (err) {
+      change(null, status: RxStatus.error());
+      throw err.toString();
+    }
+  }
+
+  Future<bool> isThereAnInternet() async {
+    var connectivityResult = await Connectivity().checkConnectivity();
+    return connectivityResult != ConnectivityResult.none;
   }
 }

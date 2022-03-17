@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:get/get.dart';
 
 import '../../values/strings.dart';
-import '../edit_aktivitas_model.dart';
+import '../models/edit_aktivitas_model.dart';
 
 class AktivitasProvider extends GetConnect {
   Future<EditAktivitas> showEditAktivitas(String id) async {

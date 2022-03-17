@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 
 import '../../values/colors.dart';
 import '../controllers/detail_aktivitas_controller.dart';
-import '../detail_aktivitas_model.dart';
+import '../models/detail_aktivitas_model.dart';
 
 class SubAktivitasWidget extends GetView<DetailAktivitasController> {
   const SubAktivitasWidget({

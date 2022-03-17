@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loogbook_mobile_app/app/modules/homepage/widget/custom_button_widget.dart';
 import 'package:loogbook_mobile_app/app/modules/values/colors.dart';
-import 'package:loogbook_mobile_app/app/routes/app_pages.dart';
 import 'package:loogbook_mobile_app/app/utils/helper.dart';
 
 import '../controllers/detail_aktivitas_controller.dart';
@@ -26,15 +25,28 @@ class DetailAktivitasView extends GetView<DetailAktivitasController> {
           borderRadius: 5,
           textColor: Colors.white,
           onPressed: () {
-            if (controller.checkValueIsValid()) {
-              if (controller.argument[0]["edit"]) {
-                controller.editAktivitas();
-              } else {
-                controller.addAktivitases();
-              }
-              Get.offAllNamed(AppPages.INITIAL_HP);
+            if (controller.argument[0]["edit"]) {
+              controller.checkValueIsValid()
+                  ? controller.editAktivitas()
+                  : Get.defaultDialog(
+                      title: "Alert",
+                      middleText: "All forms must be filled!",
+                    );
             } else {
-              print("Data harus terisi semua!");
+              controller.checkValueIsValid()
+                  ? controller.isThereAnInternet().then(
+                        (value) => value
+                            ? controller.addAktivitas()
+                            : Get.defaultDialog(
+                                title: "Alert",
+                                middleText:
+                                    "You don't have internet, please turn on your internet!",
+                              ),
+                      )
+                  : Get.defaultDialog(
+                      title: "Alert",
+                      middleText: "All forms must be filled!",
+                    );
             }
           },
         ),

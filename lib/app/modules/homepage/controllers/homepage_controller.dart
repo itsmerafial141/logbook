@@ -45,10 +45,15 @@ class HomepageController extends GetxController
           print("ID : " + dataLocal["id"]);
           listAktivitas.add(aktivitas);
         }
+        var dataLocale = listAktivitas
+            .where((element) => element.tanggal == formatedDate(DateTime.now()))
+            .toList();
+        change(dataLocale, status: RxStatus.success());
         print("ini offline");
       }
     } catch (err) {
       print("ini Error");
+      print(err.toString());
     }
   }
 
@@ -153,5 +158,10 @@ class HomepageController extends GetxController
       tanggal: tanggal,
     );
     listAktivitas.add(aktivitas);
+  }
+
+  Future<bool> isThereAnInternet() async {
+    var connectivityResult = await Connectivity().checkConnectivity();
+    return connectivityResult != ConnectivityResult.none;
   }
 }
